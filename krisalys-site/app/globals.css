@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+::selection {
+  background-color: #2e8fff;
+  color: #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scrollbar discrète aux couleurs de marque (Partie 7 du Master Prompt KOS — cohérence graphique
+   jusque dans les détails). Dégradation silencieuse sur les navigateurs qui ne supportent pas ces
+   propriétés : le scrollbar par défaut du système s'affiche alors, sans casse visuelle. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #115DB2 #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #115DB2, #E47214);
+  border-radius: 9999px;
+}
