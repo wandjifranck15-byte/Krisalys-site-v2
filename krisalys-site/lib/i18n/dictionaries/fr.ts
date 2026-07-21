@@ -1,9 +1,11 @@
+import { Dictionary } from "@/types";
+
 // Dictionnaire français — langue de lancement.
 // Les textes des pages (solutions, secteurs, FAQ, etc.) vivent dans /data
 // et sont déjà externalisés des composants. Ce dictionnaire couvre les
 // chaînes d'interface récurrentes (navigation, boutons, formulaires),
 // pour lesquelles la traduction est indépendante du contenu métier.
-const fr = {
+const fr: Dictionary = {
   common: {
     ctaPrimary: "Demander une simulation gratuite",
     ctaSecondary: "Découvrir nos solutions",
@@ -46,6 +48,6 @@ const fr = {
     tagline: "Solutions innovantes pour votre visibilité.",
     rightsReserved: "Tous droits réservés.",
   },
-} as const;
+};
 
 export default fr;

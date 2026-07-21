@@ -1,8 +1,10 @@
+import { Dictionary } from "@/types";
+
 // English dictionary — scaffold only.
 // KRISALYS launches in French; this file demonstrates that the
 // architecture supports adding a language without touching components.
 // TODO: complete full translation before enabling the "en" locale.
-const en = {
+const en: Dictionary = {
   common: {
     ctaPrimary: "Request a free simulation",
     ctaSecondary: "Discover our solutions",
@@ -45,6 +47,6 @@ const en = {
     tagline: "Innovative solutions for your visibility.",
     rightsReserved: "All rights reserved.",
   },
-} as const;
+};
 
 export default en;

@@ -41,7 +41,7 @@ export default function Logo({
       )}
       <Image
         src={isFull ? "/images/brand_logo_full.png" : "/images/brand_mark_k.png"}
-        alt="KRISALYS — Écrans LED &amp; solutions visuelles"
+        alt="KRISALYS — Écrans LED & solutions visuelles"
         width={isFull ? 220 : 40}
         height={isFull ? 86 : 39}
         priority={priority}

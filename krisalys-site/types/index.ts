@@ -2,6 +2,48 @@
 
 export type Locale = "fr" | "en";
 
+// Forme structurelle du dictionnaire de traduction (lib/i18n). Utiliser ce type explicite plutôt que
+// `typeof fr` évite un bug de typage : avec `as const`, `typeof fr` fige des types littéraux exacts
+// (ex. "Demander une simulation gratuite"), ce qui rend toute autre langue (ex. l'anglais) impossible
+// à typer correctement puisque ses chaînes sont différentes. Voir lib/i18n/config.ts.
+export interface Dictionary {
+  common: {
+    ctaPrimary: string;
+    ctaSecondary: string;
+    ctaAlt: string[];
+    readMore: string;
+    scanToDiscover: string;
+  };
+  nav: {
+    menuOpen: string;
+    menuClose: string;
+    language: string;
+  };
+  form: {
+    name: string;
+    company: string;
+    phone: string;
+    email: string;
+    city: string;
+    buildingType: string;
+    message: string;
+    photo: string;
+    submit: string;
+    submitting: string;
+    successTitle: string;
+    successBody: string;
+    errorRequired: string;
+    errorEmail: string;
+  };
+  whatsapp: {
+    prefilledMessage: string;
+  };
+  footer: {
+    tagline: string;
+    rightsReserved: string;
+  };
+}
+
 export interface NavItem {
   label: string;
   href: string;

@@ -1,4 +1,4 @@
-import { Locale } from "@/types";
+import { Locale, Dictionary } from "@/types";
 import fr from "./dictionaries/fr";
 import en from "./dictionaries/en";
 
@@ -10,8 +10,8 @@ import en from "./dictionaries/en";
 export const defaultLocale: Locale = "fr";
 export const locales: Locale[] = ["fr"]; // ajouter "en" ici quand la traduction sera complète
 
-const dictionaries: Record<Locale, typeof fr> = { fr, en };
+const dictionaries: Record<Locale, Dictionary> = { fr, en };
 
-export function getDictionary(locale: Locale = defaultLocale) {
+export function getDictionary(locale: Locale = defaultLocale): Dictionary {
   return dictionaries[locale] ?? dictionaries[defaultLocale];
 }
