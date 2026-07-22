@@ -2,7 +2,7 @@
   "name": "krisalys-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Site web officiel KRISALYS - Écrans LED & solutions visuelles",
+  "description": "Site web officiel KRISALYS - \u00c9crans LED & solutions visuelles",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "next": "15.1.0",
+    "next": "^15.1.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "framer-motion": "^12.4.0",
@@ -32,7 +32,7 @@
     "postcss": "^8.4.49",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
-    "eslint-config-next": "15.1.0",
+    "eslint-config-next": "^15.1.0",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9"
   },
