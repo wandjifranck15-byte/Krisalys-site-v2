@@ -22,8 +22,8 @@ export const siteConfig = {
     "KRISALYS conçoit des solutions d'écrans LED et de façades numériques pour les entreprises au Cameroun : hôtels, banques, centres commerciaux, concessionnaires et bien d'autres secteurs.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.krisalysglobal.com",
   email: "contact@krisalysglobal.com",
-  phone: "+237 659 115 853",
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "237659115853",
+  phone: "+237 682 90 91 62",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "237682909162",
   address: {
     locality: "Nyalla Pariso, Douala",
     country: "Cameroun",

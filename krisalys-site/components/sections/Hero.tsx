@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Container from "@/components/ui/Container";
+import Logo from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 
 export default function Hero() {
@@ -33,6 +34,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-3xl"
         >
+          <Logo variant="lockup" asLink={false} priority className="mb-10" />
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-krisalys-blue">
             Écrans LED &amp; solutions visuelles — Douala, Cameroun
           </p>

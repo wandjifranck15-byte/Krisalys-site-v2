@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
 import CTASection from "@/components/sections/CTASection";
+import FounderSection from "@/components/sections/FounderSection";
 import { divisions } from "@/data/divisions";
 
 export const metadata: Metadata = {
@@ -10,34 +10,53 @@ export const metadata: Metadata = {
     "KRISALYS est une entreprise technologique camerounaise dont la mission est de transformer les bâtiments africains grâce aux technologies visuelles modernes.",
 };
 
+const values = [
+  { name: "Transparence", description: "Nous disposons ce que la technologie peut faire — et ce qu'elle ne peut pas encore faire." },
+  { name: "Conseil avant vente", description: "Chaque recommandation part d'une étude réelle de votre bâtiment, jamais d'un catalogue." },
+  { name: "Fiabilité", description: "Un projet est planifié, suivi, et maintenu — pas seulement installé." },
+  { name: "Exigence technique", description: "Chaque simulation respecte l'architecture réelle de votre bâtiment, sans effet trompeur." },
+  { name: "Vision long terme", description: "Nous construisons des relations qui durent au-delà de l'installation." },
+  { name: "Impact mesurable", description: "La technologie n'a de sens que si elle sert un objectif commercial concret." },
+];
+
+const commitments = [
+  "Étude personnalisée de votre bâtiment, de son exposition et de vos objectifs de communication",
+  "Simulation photoréaliste avant toute décision d'investissement",
+  "Conseil objectif, basé sur votre cas réel — jamais sur le produit le plus cher",
+  "Devis clair, sans coût caché ni ligne ambiguë",
+  "Installation planifiée, avec un calendrier communiqué avant le début des travaux",
+  "Accompagnement à la mise en service et formation de vos équipes",
+  "Maintenance et suivi technique après installation",
+];
+
 export default function AProposPage() {
   return (
     <>
-      <section className="bg-krisalys-black py-20">
-        <Container className="max-w-3xl">
-          <SectionHeading eyebrow="À propos" title="Notre vision" light />
-          <p className="mt-6 text-krisalys-gray-light">
-            KRISALYS n&apos;est pas une simple entreprise qui vend des écrans LED. Notre mission est
-            d&apos;accompagner la transformation visuelle des bâtiments en Afrique, en donnant aux
-            entreprises les moyens de communiquer plus efficacement avec leur environnement.
-          </p>
-          <p className="mt-4 text-krisalys-gray-light">
-            Aujourd&apos;hui, KRISALYS commercialise principalement des solutions d&apos;affichage LED
-            à travers sa division KRISALYS LED, basée à Douala. Cette activité constitue la première
-            étape d&apos;une ambition plus large : construire, avec le temps et la rigueur nécessaires,
-            un groupe capable d&apos;intervenir sur plusieurs marchés.
-          </p>
+      <FounderSection />
 
-          <h2 className="mt-12 text-xl font-semibold text-white">Nos valeurs</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-3 text-sm text-krisalys-gray-light sm:grid-cols-4">
-            {["Innovation", "Qualité", "Excellence", "Modernité", "Fiabilité", "Professionnalisme", "Accompagnement", "Service premium"].map(
-              (value) => (
-                <li key={value} className="rounded-lg border border-white/10 px-3 py-2 text-center">
-                  {value}
-                </li>
-              )
-            )}
+      <section className="bg-krisalys-black pb-20">
+        <Container className="max-w-3xl">
+          <h2 className="text-xl font-semibold text-white">Ce qui guide chaque projet</h2>
+          <ul className="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+            {values.map((value) => (
+              <li key={value.name} className="rounded-lg border border-white/10 px-4 py-3">
+                <p className="font-medium text-white">{value.name}</p>
+                <p className="mt-1 text-krisalys-gray-light">{value.description}</p>
+              </li>
+            ))}
           </ul>
+
+          <h2 className="mt-12 text-xl font-semibold text-white">Nos engagements</h2>
+          <ol className="mt-4 space-y-3">
+            {commitments.map((item, i) => (
+              <li key={item} className="flex gap-3 text-sm text-krisalys-gray-light">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-krisalys-blue-deep/20 text-xs font-semibold text-krisalys-blue">
+                  {i + 1}
+                </span>
+                {item}
+              </li>
+            ))}
+          </ol>
 
           <h2 className="mt-12 text-xl font-semibold text-white">Le groupe KRISALYS, une ambition progressive</h2>
           <p className="mt-4 text-krisalys-gray-light">
