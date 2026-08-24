@@ -5,10 +5,10 @@ export const metadata: Metadata = { title: "Politique de confidentialité" };
 
 export default function ConfidentialitePage() {
   return (
-    <section className="bg-krisalys-black py-20">
+    <section className="bg-canvas py-20">
       <Container className="max-w-3xl">
-        <h1 className="text-3xl font-bold text-white">Politique de confidentialité</h1>
-        <div className="mt-6 space-y-4 text-sm text-krisalys-gray-light">
+        <h1 className="text-3xl font-bold text-ink">Politique de confidentialité</h1>
+        <div className="mt-6 space-y-4 text-sm text-ink-muted">
           <p>
             Les informations transmises via le formulaire de contact (nom, entreprise, téléphone,
             email, ville, type de bâtiment, message) sont utilisées uniquement pour traiter votre

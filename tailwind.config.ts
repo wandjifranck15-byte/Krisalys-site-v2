@@ -10,6 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Tokens sémantiques dépendants du thème (voir app/globals.css pour les
+        // valeurs réelles par thème). Toujours préférer ces tokens à une couleur
+        // littérale krisalys-* pour tout élément qui doit s'adapter au mode
+        // jour/nuit choisi par l'utilisateur.
+        canvas: "var(--knb-bg)",
+        surface: "var(--knb-surface)",
+        "surface-soft": "var(--knb-surface-soft)",
+        ink: "var(--knb-ink)",
+        "ink-muted": "var(--knb-ink-muted)",
+        subtle: "var(--knb-border)",
+        accent: "var(--knb-accent)",
+        "accent-hover": "var(--knb-accent-hover)",
         krisalys: {
           black: "#0A0A0A",
           charcoal: "#151516",

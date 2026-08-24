@@ -5,10 +5,10 @@ export const metadata: Metadata = { title: "Conditions d'utilisation" };
 
 export default function ConditionsPage() {
   return (
-    <section className="bg-krisalys-black py-20">
+    <section className="bg-canvas py-20">
       <Container className="max-w-3xl">
-        <h1 className="text-3xl font-bold text-white">Conditions d&apos;utilisation</h1>
-        <div className="mt-6 space-y-4 text-sm text-krisalys-gray-light">
+        <h1 className="text-3xl font-bold text-ink">Conditions d&apos;utilisation</h1>
+        <div className="mt-6 space-y-4 text-sm text-ink-muted">
           <p>
             L&apos;utilisation de ce site implique l&apos;acceptation des présentes conditions.
             Les simulations et estimations fournies par le configurateur sont indicatives et ne

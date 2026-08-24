@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validations/contact";
+import { syncContactToHubSpot } from "@/lib/hubspot";
 
 // Endpoint de réception du formulaire de contact / simulation.
 // Envoi de l'email transactionnel via l'API REST de Resend
@@ -117,6 +118,19 @@ export async function POST(req: NextRequest) {
         { success: false, error: "email_send_rejected" },
         { status: 502 }
       );
+    }
+
+    // Synchronisation HubSpot best-effort : ne s'exécute que si
+    // HUBSPOT_ACCESS_TOKEN est configuré (voir lib/hubspot.ts), et ne doit
+    // jamais faire échouer la soumission du formulaire ni l'email Resend
+    // déjà envoyé avec succès ci-dessus.
+    try {
+      const hubspotResult = await syncContactToHubSpot(data);
+      if (!hubspotResult.skipped && !hubspotResult.ok) {
+        console.error("Synchronisation HubSpot non aboutie (voir logs ci-dessus).");
+      }
+    } catch (hubspotError) {
+      console.error("Erreur inattendue lors de la synchronisation HubSpot :", hubspotError);
     }
 
     return NextResponse.json({ success: true });

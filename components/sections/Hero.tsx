@@ -5,8 +5,11 @@ import { ChevronDown } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
+import { useDictionary } from "@/lib/i18n/LocaleContext";
 
 export default function Hero() {
+  const dictionary = useDictionary();
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-krisalys-black">
       {/* Fond : à remplacer par une vidéo réelle de façade LED (voir README > Médias) */}
@@ -36,21 +39,20 @@ export default function Hero() {
         >
           <Logo variant="lockup" asLink={false} priority className="mb-10" />
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-krisalys-blue">
-            Écrans LED &amp; solutions visuelles — Douala, Cameroun
+            {dictionary.hero.eyebrow}
           </p>
           <h1 className="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Transformez votre façade en un puissant outil de communication.
+            {dictionary.hero.title}
           </h1>
           <p className="mt-6 max-w-xl text-lg text-krisalys-gray-light">
-            KRISALYS accompagne les entreprises dans leur transformation grâce à des solutions
-            d&apos;affichage LED innovantes, élégantes et performantes.
+            {dictionary.hero.subtitle}
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <ButtonLink href="/contact" size="lg">
-              Demander une simulation gratuite
+              {dictionary.common.ctaPrimary}
             </ButtonLink>
             <ButtonLink href="/nos-solutions" variant="secondary" size="lg">
-              Découvrir nos solutions
+              {dictionary.common.ctaSecondary}
             </ButtonLink>
           </div>
         </motion.div>

@@ -13,20 +13,19 @@ const items = [
 
 export default function WhyKrisalys() {
   return (
-    <section className="bg-krisalys-black py-24">
+    <section className="bg-canvas py-24">
       <Container>
         <SectionHeading
           eyebrow="Pourquoi KRISALYS"
           title="Des solutions complètes pour donner de la visibilité à votre entreprise."
-          light
         />
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <FadeIn key={item.title} delay={i * 0.1}>
               <Card className="h-full">
-                <item.icon className="h-8 w-8 text-krisalys-blue" />
-                <h3 className="mt-4 text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm text-krisalys-gray-light">{item.description}</p>
+                <item.icon className="h-8 w-8 text-krisalys-blue-deep" />
+                <h3 className="mt-4 text-lg font-semibold text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm text-ink-muted">{item.description}</p>
               </Card>
             </FadeIn>
           ))}

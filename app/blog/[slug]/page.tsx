@@ -24,13 +24,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   return (
     <>
-      <article className="bg-krisalys-black py-20">
+      <article className="bg-canvas py-20">
         <Container className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-krisalys-orange">
+          <p className="text-xs font-semibold uppercase tracking-widest text-krisalys-blue-deep">
             {post.category} · {post.readingTime}
           </p>
-          <h1 className="mt-3 text-3xl font-bold text-white sm:text-4xl">{post.title}</h1>
-          <div className="mt-8 space-y-5 text-krisalys-gray-light">
+          <h1 className="mt-3 text-3xl font-bold text-ink sm:text-4xl">{post.title}</h1>
+          <div className="mt-8 space-y-5 text-ink-muted">
             {post.content.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}

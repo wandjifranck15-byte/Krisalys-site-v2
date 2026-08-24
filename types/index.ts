@@ -14,10 +14,53 @@ export interface Dictionary {
     readMore: string;
     scanToDiscover: string;
   };
+  theme: {
+    light: string;
+    dark: string;
+    system: string;
+    toggleLabel: string;
+  };
   nav: {
     menuOpen: string;
     menuClose: string;
     language: string;
+    // Libellés de navigation indexés par href (data/navigation.ts reste la
+    // source unique des routes ; ce dictionnaire ne fait que les traduire).
+    labels: Record<string, string>;
+  };
+  hero: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+  };
+  pages: {
+    faq: { eyebrow: string; title: string; ctaTitle: string };
+    methode: { eyebrow: string; title: string; description: string; stepsEyebrow: string; stepsTitle: string; ctaTitle: string };
+    maintenance: { eyebrow: string; title: string; description: string; ctaTitle: string; ctaLabel: string };
+    contact: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      phoneLabel: string;
+      emailLabel: string;
+      addressLabel: string;
+      hoursLabel: string;
+      hoursValue: string;
+      zoneEyebrow: string;
+      zoneTitle: string;
+      zoneDescription: string;
+    };
+    configurateur: { eyebrow: string; title: string; description: string };
+    simulations: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      configuratorEyebrow: string;
+      configuratorTitle: string;
+      configuratorDescription: string;
+      ctaLabel: string;
+    };
+    notFound: { eyebrow: string; title: string; description: string; cta: string };
   };
   form: {
     name: string;
@@ -26,6 +69,8 @@ export interface Dictionary {
     email: string;
     city: string;
     buildingType: string;
+    buildingTypePlaceholder: string;
+    buildingTypeOptions: string[];
     message: string;
     photo: string;
     submit: string;
@@ -34,6 +79,12 @@ export interface Dictionary {
     successBody: string;
     errorRequired: string;
     errorEmail: string;
+    errorName: string;
+    errorPhone: string;
+    errorCity: string;
+    errorBuildingType: string;
+    errorMessage: string;
+    errorServer: string;
   };
   whatsapp: {
     prefilledMessage: string;
@@ -41,6 +92,14 @@ export interface Dictionary {
   footer: {
     tagline: string;
     rightsReserved: string;
+    navHeading: string;
+    contactHeading: string;
+    legalHeading: string;
+  };
+  faqCategories: {
+    technique: string;
+    commercial: string;
+    apresVente: string;
   };
 }
 

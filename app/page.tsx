@@ -18,13 +18,12 @@ export default function HomePage() {
       <WhyKrisalys />
       <SolutionsOverview />
 
-      <section className="bg-krisalys-black py-24">
+      <section className="bg-surface-soft py-24">
         <Container>
           <SectionHeading
             eyebrow="Projection"
             title="Imaginez votre façade transformée"
             description="Faites glisser le curseur pour comparer une façade avant et après l'intégration d'une solution KRISALYS."
-            light
           />
           <div className="mt-12">
             <BeforeAfterSlider />
@@ -35,9 +34,9 @@ export default function HomePage() {
       <HowItWorks steps={methodSteps.slice(0, 5)} />
       <TestimonialsPlaceholder />
 
-      <section className="bg-krisalys-charcoal py-24">
+      <section className="bg-canvas py-24">
         <Container>
-          <SectionHeading eyebrow="Questions fréquentes" title="Les questions les plus posées" light />
+          <SectionHeading eyebrow="Questions fréquentes" title="Les questions les plus posées" />
           <div className="mt-10 max-w-3xl">
             <FAQAccordion items={faqItems.slice(0, 5)} />
           </div>

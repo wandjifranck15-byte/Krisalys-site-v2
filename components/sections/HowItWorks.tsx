@@ -7,7 +7,7 @@ export default function HowItWorks({
   steps,
   eyebrow = "Notre méthode",
   title = "Comment ça fonctionne ?",
-  light = true,
+  light = false,
 }: {
   steps: MethodStep[];
   eyebrow?: string;
@@ -15,7 +15,7 @@ export default function HowItWorks({
   light?: boolean;
 }) {
   return (
-    <section className={light ? "bg-krisalys-black py-24" : "bg-white py-24"}>
+    <section className={light ? "bg-krisalys-black py-24" : "bg-canvas py-24"}>
       <Container>
         <SectionHeading eyebrow={eyebrow} title={title} light={light} />
         <div className="relative mt-14">
@@ -29,14 +29,14 @@ export default function HowItWorks({
                   }`}
                 >
                   <div className="flex sm:w-1/2" />
-                  <div className="absolute left-5 top-1 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-brand text-sm font-bold text-krisalys-black sm:left-1/2">
+                  <div className="absolute left-5 top-1 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-brand text-sm font-bold text-white sm:left-1/2">
                     {step.step}
                   </div>
                   <div className={`ml-14 sm:ml-0 sm:w-1/2 ${i % 2 === 1 ? "sm:pr-14" : "sm:pl-14"}`}>
-                    <h3 className={`text-lg font-semibold ${light ? "text-white" : "text-krisalys-black"}`}>
+                    <h3 className={`text-lg font-semibold ${light ? "text-white" : "text-ink"}`}>
                       {step.title}
                     </h3>
-                    <p className={`mt-1 text-sm ${light ? "text-krisalys-gray-light" : "text-krisalys-gray-dark"}`}>
+                    <p className={`mt-1 text-sm ${light ? "text-krisalys-gray-light" : "text-ink-muted"}`}>
                       {step.description}
                     </p>
                   </div>

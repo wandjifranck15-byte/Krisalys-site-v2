@@ -16,12 +16,12 @@ export default function Card({
   const hoverAccent =
     accent === "gold"
       ? "hover:border-krisalys-gold/50 hover:shadow-glow-gold"
-      : "hover:border-krisalys-blue/40 hover:shadow-glow";
+      : "hover:border-krisalys-blue-deep/40 hover:shadow-glow";
 
   return (
     <div
       className={cn(
-        "rounded-2xl border border-white/10 bg-krisalys-anthracite p-6",
+        "rounded-2xl border border-subtle bg-surface p-6 shadow-sm",
         hoverable && cn("transition-all duration-300 hover:-translate-y-1", hoverAccent),
         className
       )}

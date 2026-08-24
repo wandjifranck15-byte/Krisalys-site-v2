@@ -17,13 +17,12 @@ export const metadata: Metadata = {
 export default function SecteursPage() {
   return (
     <>
-      <section className="bg-krisalys-black py-20">
+      <section className="bg-canvas py-20">
         <Container>
           <SectionHeading
             eyebrow="Secteurs d'activité"
             title="Des solutions adaptées à votre métier"
             description="Chaque secteur a ses propres contraintes de visibilité et de communication. Voici comment KRISALYS y répond concrètement."
-            light
           />
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sectors.map((sector) => (
@@ -39,14 +38,14 @@ export default function SecteursPage() {
           <section
             key={sector.slug}
             id={sector.slug}
-            className={`scroll-mt-24 py-16 ${i % 2 === 0 ? "bg-krisalys-charcoal" : "bg-krisalys-black"}`}
+            className={`scroll-mt-24 py-16 ${i % 2 === 0 ? "bg-surface-soft" : "bg-canvas"}`}
           >
             <Container className="grid grid-cols-1 gap-10 lg:grid-cols-3">
               <div>
                 <DynamicIcon name={sector.icon} className="h-9 w-9 text-krisalys-blue" />
-                <h2 className="mt-3 text-xl font-bold text-white">{sector.name}</h2>
+                <h2 className="mt-3 text-xl font-bold text-ink">{sector.name}</h2>
                 {solution && (
-                  <p className="mt-2 text-sm text-krisalys-orange">
+                  <p className="mt-2 text-sm text-krisalys-blue-deep">
                     Solution recommandée : {solution.name}
                   </p>
                 )}
@@ -60,7 +59,7 @@ export default function SecteursPage() {
                 </h3>
                 <ul className="mt-3 space-y-2">
                   {sector.problems.map((p) => (
-                    <li key={p} className="text-sm text-krisalys-gray-light">• {p}</li>
+                    <li key={p} className="text-sm text-ink-muted">• {p}</li>
                   ))}
                 </ul>
                 <h3 className="mt-6 text-sm font-semibold uppercase tracking-widest text-krisalys-blue">
@@ -68,7 +67,7 @@ export default function SecteursPage() {
                 </h3>
                 <ul className="mt-3 space-y-2">
                   {sector.benefits.map((b) => (
-                    <li key={b} className="text-sm text-krisalys-gray-light">• {b}</li>
+                    <li key={b} className="text-sm text-ink-muted">• {b}</li>
                   ))}
                 </ul>
               </div>
@@ -78,7 +77,7 @@ export default function SecteursPage() {
                 </h3>
                 <ul className="mt-3 space-y-2">
                   {sector.useCases.map((u) => (
-                    <li key={u} className="text-sm text-krisalys-gray-light">• {u}</li>
+                    <li key={u} className="text-sm text-ink-muted">• {u}</li>
                   ))}
                 </ul>
               </div>

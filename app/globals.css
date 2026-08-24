@@ -6,14 +6,59 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ==========================================================================
+   ARCHITECTURE DE THÈME CENTRALISÉE (Jour / Nuit / Système)
+   ==========================================================================
+   Toute la palette dépendante du thème passe par ces variables CSS, reprises
+   comme tokens Tailwind sémantiques dans tailwind.config.ts (bg-canvas,
+   bg-surface, bg-surface-soft, text-ink, text-ink-muted, border-subtle,
+   text-accent, border-accent). Pour changer la palette d'un thème, modifier
+   UNIQUEMENT ce bloc — aucun composant ne doit contenir de couleur littérale
+   dépendante du thème.
+
+   Le thème actif est piloté par l'attribut [data-theme] sur <html>, posé par
+   ThemeProvider (components/theme/ThemeProvider.tsx) avant l'hydratation
+   (script bloquant dans <head>) pour éviter tout flash visuel (FOUC).
+
+   Éléments volontairement non themés (voir README > Thème) : Hero, Navbar,
+   Footer, CTASection, CameroonMap restent un "chrome premium" sombre
+   constant, quel que soit le thème choisi par l'utilisateur — décision de
+   design assumée, distincte de la logique jour/nuit ci-dessous. */
+:root {
+  --knb-bg: #ffffff;
+  --knb-surface: #ffffff;
+  --knb-surface-soft: #f5f7fa;
+  --knb-ink: #0a0a0a;
+  --knb-ink-muted: #5a5a5a;
+  --knb-border: rgba(10, 10, 10, 0.1);
+  --knb-accent: #115db2;
+  --knb-accent-hover: #0d4a8f;
+  --knb-selection-bg: #115db2;
+  --knb-selection-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --knb-bg: #0a0a0a;
+  --knb-surface: #151516;
+  --knb-surface-soft: #1a1a1e;
+  --knb-ink: #ffffff;
+  --knb-ink-muted: #e8e8e8;
+  --knb-border: rgba(255, 255, 255, 0.1);
+  --knb-accent: #2e8fff;
+  --knb-accent-hover: #1e6fd9;
+  --knb-selection-bg: #2e8fff;
+  --knb-selection-text: #0a0a0a;
+}
+
 body {
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: var(--knb-bg);
+  color: var(--knb-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 ::selection {
-  background-color: #2e8fff;
-  color: #0a0a0a;
+  background-color: var(--knb-selection-bg);
+  color: var(--knb-selection-text);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -32,7 +77,7 @@ body {
    propriétés : le scrollbar par défaut du système s'affiche alors, sans casse visuelle. */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #115DB2 #0a0a0a;
+  scrollbar-color: var(--knb-accent) var(--knb-surface-soft);
 }
 
 ::-webkit-scrollbar {
@@ -40,10 +85,10 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--knb-surface-soft);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #115DB2, #E47214);
+  background: linear-gradient(180deg, #115db2, #2e8fff);
   border-radius: 9999px;
 }

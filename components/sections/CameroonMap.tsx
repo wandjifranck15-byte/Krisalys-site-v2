@@ -29,7 +29,7 @@ export default function CameroonMap() {
             <MapPin
               className={cn(
                 "h-7 w-7 drop-shadow-lg transition-transform",
-                city.slug === active ? "scale-125 text-krisalys-orange" : "text-krisalys-blue/70",
+                city.slug === active ? "scale-125 text-krisalys-blue-deep" : "text-krisalys-blue/70",
                 city.status === "upcoming" && "opacity-50"
               )}
               fill={city.slug === active ? "currentColor" : "none"}

@@ -13,10 +13,10 @@ interface BaseProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-krisalys-orange text-krisalys-black hover:bg-krisalys-orange-dark shadow-glow-orange",
+    "bg-krisalys-blue-deep text-white hover:bg-krisalys-blue-dark shadow-glow",
   secondary:
-    "border border-krisalys-blue text-white hover:bg-krisalys-blue/10",
-  ghost: "text-white hover:text-krisalys-blue",
+    "border border-krisalys-blue-deep text-krisalys-blue-deep hover:bg-krisalys-blue-deep/10",
+  ghost: "text-ink hover:text-accent",
   // Variant premium (Partie 7 du Master Prompt KOS) : dégradé de marque réel + halo doré, réservé aux
   // appels à l'action à plus forte valeur perçue (ex. CTA de fin de page, offres stratégiques).
   premium:

@@ -28,34 +28,34 @@ export default function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="relative aspect-video w-full select-none overflow-hidden rounded-2xl border border-white/10"
+      className="relative aspect-video w-full select-none overflow-hidden rounded-2xl border border-subtle shadow-sm"
       onMouseMove={(e) => e.buttons === 1 && handleMove(e.clientX)}
       onTouchMove={(e) => handleMove(e.touches[0].clientX)}
     >
       {/* Après (fond) */}
-      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-krisalys-blue/30 to-krisalys-orange/20">
-        <span className="text-sm font-semibold uppercase tracking-widest text-white/70">
+      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-krisalys-blue-deep/25 to-krisalys-blue/15">
+        <span className="text-sm font-semibold uppercase tracking-widest text-ink/60">
           {afterLabel}
         </span>
       </div>
 
       {/* Avant (recouvrement) */}
       <div
-        className="absolute inset-y-0 left-0 flex items-center justify-center overflow-hidden bg-krisalys-anthracite"
+        className="absolute inset-y-0 left-0 flex items-center justify-center overflow-hidden bg-krisalys-gray-light"
         style={{ width: `${position}%` }}
       >
-        <span className="text-sm font-semibold uppercase tracking-widest text-white/50">
+        <span className="text-sm font-semibold uppercase tracking-widest text-ink-muted">
           {beforeLabel}
         </span>
       </div>
 
       {/* Curseur */}
       <div
-        className="absolute inset-y-0 z-10 flex w-0.5 -translate-x-1/2 items-center bg-white"
+        className="absolute inset-y-0 z-10 flex w-0.5 -translate-x-1/2 items-center bg-krisalys-blue-deep"
         style={{ left: `${position}%` }}
       >
         <div
-          className="flex h-9 w-9 -translate-x-1/2 cursor-ew-resize items-center justify-center rounded-full bg-white text-krisalys-black shadow-lg"
+          className="flex h-9 w-9 -translate-x-1/2 cursor-ew-resize items-center justify-center rounded-full bg-krisalys-blue-deep text-white shadow-lg"
           onMouseDown={(e) => e.preventDefault()}
         >
           <MoveHorizontal className="h-4 w-4" />

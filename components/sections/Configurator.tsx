@@ -9,8 +9,8 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { AlertTriangle, Sparkles } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-lg border border-white/15 bg-krisalys-black px-4 py-3 text-sm text-white placeholder:text-krisalys-gray-dark focus:border-krisalys-blue focus:outline-none";
-const labelClass = "mb-1.5 block text-sm font-medium text-krisalys-gray-light";
+  "w-full rounded-lg border border-subtle bg-surface px-4 py-3 text-sm text-ink placeholder:text-ink-muted focus:border-krisalys-blue-deep focus:outline-none";
+const labelClass = "mb-1.5 block text-sm font-medium text-ink-muted";
 
 // Logique d'estimation simple, fondée sur des règles explicites — pas
 // d'IA ni de calcul de prix. Le but est d'orienter le visiteur, jamais
@@ -89,10 +89,10 @@ export default function Configurator() {
         <div>
           <label className={labelClass}>Emplacement</label>
           <div className="flex gap-4">
-            <label className="flex items-center gap-2 text-sm text-krisalys-gray-light">
+            <label className="flex items-center gap-2 text-sm text-ink-muted">
               <input type="radio" value="exterieur" {...register("placement")} /> Extérieur
             </label>
-            <label className="flex items-center gap-2 text-sm text-krisalys-gray-light">
+            <label className="flex items-center gap-2 text-sm text-ink-muted">
               <input type="radio" value="interieur" {...register("placement")} /> Intérieur
             </label>
           </div>
@@ -113,20 +113,20 @@ export default function Configurator() {
         </Button>
       </form>
 
-      <div className="flex flex-col justify-center rounded-2xl border border-white/10 bg-krisalys-anthracite p-8">
+      <div className="flex flex-col justify-center rounded-2xl border border-subtle bg-surface p-8 shadow-sm">
         {!result ? (
-          <p className="text-sm text-krisalys-gray-light">
+          <p className="text-sm text-ink-muted">
             Renseignez les informations de votre projet pour recevoir une première orientation.
           </p>
         ) : (
           <div className="space-y-5">
-            <div className="flex items-center gap-2 text-krisalys-blue">
+            <div className="flex items-center gap-2 text-krisalys-blue-deep">
               <Sparkles className="h-5 w-5" />
               <span className="text-xs font-semibold uppercase tracking-widest">Estimation indicative</span>
             </div>
-            <h3 className="text-xl font-bold text-white">{result.recommendedSolution}</h3>
-            <p className="text-sm text-krisalys-gray-light">{result.reasoning}</p>
-            <div className="flex items-start gap-2 rounded-lg border border-krisalys-orange/30 bg-krisalys-orange/10 p-3 text-xs text-krisalys-orange">
+            <h3 className="text-xl font-bold text-ink">{result.recommendedSolution}</h3>
+            <p className="text-sm text-ink-muted">{result.reasoning}</p>
+            <div className="flex items-start gap-2 rounded-lg border border-krisalys-orange/30 bg-krisalys-orange/10 p-3 text-xs text-krisalys-orange-dark">
               <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
               <span>{result.disclaimer}</span>
             </div>
