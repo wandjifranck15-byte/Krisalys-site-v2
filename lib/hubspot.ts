@@ -90,6 +90,7 @@ export async function syncContactToHubSpot(
     });
     if (!res.ok) {
       const body = await res.text().catch(() => null);
+      console.error("HUBSPOT_ERROR_BODY:", body);
       console.error(`HubSpot a refusé la création du contact (statut ${res.status}) :`, body);
       return { skipped: false, ok: false, status: res.status, step: "contact" };
     }
