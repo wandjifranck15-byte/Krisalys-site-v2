@@ -84,6 +84,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         <Providers>
+         <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-96GHQPRY1C"
+    strategy="afterInteractive"
+  />
+
+  <Script id="google-analytics" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-96GHQPRY1C');
+    `}
+  </Script>
           <Navbar />
           <main className="min-h-screen pt-20">{children}</main>
           <Footer />
