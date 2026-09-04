@@ -30,7 +30,7 @@ html {
   --knb-surface-soft: #f5f7fa;
   --knb-ink: #0a0a0a;
   --knb-ink-muted: #5a5a5a;
-  --knb-border: rgba(10, 10, 10, 0.1);
+  --knb-border: rgba(10, 10, 10, 0.18);
   --knb-accent: #115db2;
   --knb-accent-hover: #0d4a8f;
   --knb-selection-bg: #115db2;
@@ -43,7 +43,7 @@ html {
   --knb-surface-soft: #1a1a1e;
   --knb-ink: #ffffff;
   --knb-ink-muted: #e8e8e8;
-  --knb-border: rgba(255, 255, 255, 0.1);
+  --knb-border: rgba(255, 255, 255, 0.16);
   --knb-accent: #2e8fff;
   --knb-accent-hover: #1e6fd9;
   --knb-selection-bg: #2e8fff;

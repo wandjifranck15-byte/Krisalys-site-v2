@@ -13,6 +13,24 @@ export interface Dictionary {
     ctaAlt: string[];
     readMore: string;
     scanToDiscover: string;
+    benefitsLabel: string;
+    useCasesLabel: string;
+    problemsLabel: string;
+    recommendedSolutionLabel: string;
+    statusActive: string;
+    statusUpcoming: string;
+    viewSectorLabel: string;
+    simulationLabel: string;
+    realizationLabel: string;
+    objectiveLabel: string;
+    solutionLabel: string;
+    backToHome: string;
+    beforeLabel: string;
+    afterLabel: string;
+    mapDisclaimer: string;
+    mapHeadquartersDescription: string;
+    mapUpcomingDescription: string;
+    ctaSectionDefaultTitle: string;
   };
   theme: {
     light: string;
@@ -32,8 +50,10 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
+    configuratorCta: string;
   };
   pages: {
+    home: { methodEyebrow: string; methodTitle: string; faqEyebrow: string; faqTitle: string; proofsEyebrow: string; proofsTitle: string; proofsDescription: string; whyEyebrow: string; whyTitle: string; whyItems: { title: string; description: string }[]; solutionsEyebrow: string; solutionsTitle: string; solutionsDescription: string; solutionsSpecialtyBadge: string; projectionEyebrow: string; projectionTitle: string; projectionDescription: string };
     faq: { eyebrow: string; title: string; ctaTitle: string };
     methode: { eyebrow: string; title: string; description: string; stepsEyebrow: string; stepsTitle: string; ctaTitle: string };
     maintenance: { eyebrow: string; title: string; description: string; ctaTitle: string; ctaLabel: string };
@@ -61,6 +81,45 @@ export interface Dictionary {
       ctaLabel: string;
     };
     notFound: { eyebrow: string; title: string; description: string; cta: string };
+    aPropos: {
+      valuesTitle: string;
+      commitmentsTitle: string;
+      groupTitle: string;
+      groupIntro: string;
+      values: { name: string; description: string }[];
+      commitments: string[];
+    };
+    nosSolutions: { eyebrow: string; title: string; description: string; visualPlaceholder: string; cta: string; finalCta: string };
+    secteurs: { eyebrow: string; title: string; description: string };
+    realisations: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      intlEyebrow: string;
+      intlTitle: string;
+      intlDisclaimer: string;
+    };
+    blog: { eyebrow: string; title: string; readArticle: string };
+    legal: {
+      conditionsTitle: string;
+      conditionsP1: string;
+      conditionsP2: string;
+      confidentialiteTitle: string;
+      confidentialiteP1: string;
+      confidentialiteP2: string;
+      confidentialiteP3: string;
+      mentionsTitle: string;
+      denomination: string;
+      formeJuridique: string;
+      formeJuridiqueValue: string;
+      capitalSocial: string;
+      siegeSocial: string;
+      rccm: string;
+      niu: string;
+      gerant: string;
+      contact: string;
+      site: string;
+    };
   };
   form: {
     name: string;
@@ -85,6 +144,69 @@ export interface Dictionary {
     errorBuildingType: string;
     errorMessage: string;
     errorServer: string;
+  };
+  seo: {
+    home: { title: string; description: string };
+    aPropos: { title: string; description: string };
+    nosSolutions: { title: string; description: string };
+    secteurs: { title: string; description: string };
+    realisations: { title: string; description: string };
+    simulations: { title: string; description: string };
+    configurateur: { title: string; description: string };
+    notreMethode: { title: string; description: string };
+    maintenance: { title: string; description: string };
+    faq: { title: string; description: string };
+    contact: { title: string; description: string };
+    blog: { title: string; description: string };
+    conditions: { title: string };
+    confidentialite: { title: string };
+    mentionsLegales: { title: string };
+  };
+  founder: {
+    eyebrow: string;
+    title: string;
+    paragraph1: string;
+    paragraph2: string;
+    photoComingSoon: string;
+    roleLabel: string;
+    paragraph3: string;
+    paragraph4: string;
+    quote: string;
+    founderRole: string;
+    methodStatusTitle: string;
+    steps: string[];
+  };
+  configurator: {
+    buildingType: string;
+    buildingTypePlaceholder: string;
+    city: string;
+    cityPlaceholder: string;
+    width: string;
+    widthError: string;
+    height: string;
+    heightError: string;
+    placement: string;
+    exterior: string;
+    interior: string;
+    objective: string;
+    objectivePlaceholder: string;
+    submit: string;
+    resultPrompt: string;
+    estimationBadge: string;
+    cta: string;
+    results: {
+      dynamicName: string;
+      dynamicReasoning: string;
+      exteriorLargeName: string;
+      exteriorLargeReasoning: string;
+      exteriorSmallName: string;
+      exteriorSmallReasoning: string;
+      interiorGlassName: string;
+      interiorGlassReasoning: string;
+      interiorName: string;
+      interiorReasoning: string;
+      disclaimer: string;
+    };
   };
   whatsapp: {
     prefilledMessage: string;

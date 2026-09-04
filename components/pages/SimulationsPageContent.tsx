@@ -5,11 +5,13 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/sections/ProjectCard";
 import Configurator from "@/components/sections/Configurator";
 import CTASection from "@/components/sections/CTASection";
-import { projects } from "@/data/projects";
-import { useDictionary } from "@/lib/i18n/LocaleContext";
+import { getProjects } from "@/data/projects";
+import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
 export default function SimulationsPageContent() {
   const dictionary = useDictionary();
+  const { locale } = useLocale();
+  const projects = getProjects(locale);
   const p = dictionary.pages.simulations;
   return (
     <>

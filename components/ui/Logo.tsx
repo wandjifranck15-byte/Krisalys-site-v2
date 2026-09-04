@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useDictionary } from "@/lib/i18n/LocaleContext";
 
 /**
  * Logo KRISALYS — source de vérité visuelle unique du site.
@@ -31,6 +32,7 @@ export default function Logo({
   className?: string;
   priority?: boolean;
 }) {
+  const dictionary = useDictionary();
   const src =
     variant === "full"
       ? "/images/brand_logo_full.png"
@@ -78,7 +80,7 @@ export default function Logo({
   if (!asLink) return image;
 
   return (
-    <Link href="/" aria-label="KRISALYS — retour à l'accueil" className="relative inline-flex items-center">
+    <Link href="/" aria-label={dictionary.common.backToHome} className="relative inline-flex items-center">
       {image}
     </Link>
   );

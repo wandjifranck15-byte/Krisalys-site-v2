@@ -4,12 +4,15 @@ import { useState } from "react";
 import { cities } from "@/data/cities";
 import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useDictionary } from "@/lib/i18n/LocaleContext";
 
 // Illustration stylisée (non géographiquement précise) des villes
 // couvertes par KRISALYS. Douala est active ; les autres villes sont
 // affichées "à venir" et deviendront actives simplement en changeant
 // leur `status` dans data/cities.ts — sans toucher à ce composant.
+// Noms de villes (city.name) volontairement non traduits : noms propres.
 export default function CameroonMap() {
+  const dictionary = useDictionary();
   const [active, setActive] = useState(cities.find((c) => c.isHeadquarters)?.slug ?? cities[0].slug);
   const activeCity = cities.find((c) => c.slug === active) ?? cities[0];
 
@@ -37,7 +40,7 @@ export default function CameroonMap() {
           </button>
         ))}
         <p className="absolute bottom-4 left-4 text-xs text-krisalys-gray-dark">
-          Illustration stylisée — carte non géographiquement précise
+          {dictionary.common.mapDisclaimer}
         </p>
       </div>
 
@@ -46,8 +49,8 @@ export default function CameroonMap() {
           <h3 className="text-lg font-semibold text-white">{activeCity.name}</h3>
           <p className="mt-2 text-sm text-krisalys-gray-light">
             {activeCity.isHeadquarters
-              ? "Siège social de KRISALYS et zone d'intervention active."
-              : "Zone de couverture à venir — non active au lancement."}
+              ? dictionary.common.mapHeadquartersDescription
+              : dictionary.common.mapUpcomingDescription}
           </p>
           <span
             className={cn(
@@ -57,7 +60,7 @@ export default function CameroonMap() {
                 : "bg-white/10 text-krisalys-gray-light"
             )}
           >
-            {activeCity.status === "active" ? "Actif" : "Bientôt disponible"}
+            {activeCity.status === "active" ? dictionary.common.statusActive : dictionary.common.statusUpcoming}
           </span>
         </div>
         <ul className="mt-4 space-y-2">
@@ -72,7 +75,7 @@ export default function CameroonMap() {
               >
                 <span>{city.name}</span>
                 <span className="text-xs text-krisalys-gray-dark">
-                  {city.status === "active" ? "Actif" : "À venir"}
+                  {city.status === "active" ? dictionary.common.statusActive : dictionary.common.statusUpcoming}
                 </span>
               </button>
             </li>

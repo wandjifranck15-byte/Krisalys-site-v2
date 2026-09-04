@@ -4,9 +4,9 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import CTASection from "@/components/sections/CTASection";
-import { faqItems } from "@/data/faq";
+import { getFaqItems } from "@/data/faq";
 import type { FAQItem } from "@/types";
-import { useDictionary } from "@/lib/i18n/LocaleContext";
+import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
 type FaqCategory = FAQItem["category"];
 
@@ -14,6 +14,8 @@ const categoryKeys: FaqCategory[] = ["technique", "commercial", "apres-vente"];
 
 export default function FaqPageContent() {
   const dictionary = useDictionary();
+  const { locale } = useLocale();
+  const faqItems = getFaqItems(locale);
   const categoryLabels: Record<FaqCategory, string> = {
     technique: dictionary.faqCategories.technique,
     commercial: dictionary.faqCategories.commercial,

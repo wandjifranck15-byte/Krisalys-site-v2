@@ -6,11 +6,13 @@ import Card from "@/components/ui/Card";
 import DynamicIcon from "@/components/ui/DynamicIcon";
 import CTASection from "@/components/sections/CTASection";
 import FadeIn from "@/components/animations/FadeIn";
-import { maintenanceOfferings } from "@/data/maintenance";
-import { useDictionary } from "@/lib/i18n/LocaleContext";
+import { getMaintenanceOfferings } from "@/data/maintenance";
+import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
 export default function MaintenancePageContent() {
   const dictionary = useDictionary();
+  const { locale } = useLocale();
+  const maintenanceOfferings = getMaintenanceOfferings(locale);
   return (
     <>
       <section className="bg-canvas py-20">

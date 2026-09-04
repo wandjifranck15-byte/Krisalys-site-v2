@@ -1,6 +1,7 @@
 import { BlogPost } from "@/types";
+import type { Locale } from "@/types";
 
-export const blogPosts: BlogPost[] = [
+const blogPostsFr: BlogPost[] = [
   {
     slug: "pourquoi-installer-ecran-led-facade",
     title: "Pourquoi installer un écran LED sur une façade ?",
@@ -42,6 +43,54 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((p) => p.slug === slug);
+const blogPostsEn: BlogPost[] = [
+  {
+    slug: "pourquoi-installer-ecran-led-facade",
+    title: "Why install an LED screen on a facade?",
+    excerpt: "The reasons why more and more businesses are turning their facade into a communication medium.",
+    category: "Innovation",
+    publishedAt: "2026-06-01",
+    readingTime: "4 min",
+    content: [
+      "A facade is the first visual point of contact between a business and its public. Making it communicative captures attention without relying solely on distant digital channels.",
+      "Unlike printed signage, an LED screen lets you update a message within minutes — a significant responsiveness gain for commercial or institutional operations.",
+      "This transformation remains a technical project, however, requiring a prior assessment of the building to ensure a result consistent with its architecture.",
+    ],
+  },
+  {
+    slug: "avantages-ecrans-led-transparents",
+    title: "The advantages of transparent LED screens",
+    excerpt: "Understanding what transparent LED screens can really do, without overpromising.",
+    category: "Technology",
+    publishedAt: "2026-06-08",
+    readingTime: "5 min",
+    content: [
+      "Transparent LED screens display visual content directly on a glazed surface, without completely obstructing the view between inside and outside.",
+      "The transparency level varies by product: it's important to confirm it with a technical contact before any decision, rather than relying on generic visuals.",
+      "This solution is particularly well suited to buildings whose glazed facade is already an architectural asset worth preserving.",
+    ],
+  },
+  {
+    slug: "moderniser-agence-bancaire",
+    title: "How to modernize a bank branch",
+    excerpt: "Visual modernization options available to a bank branch without major construction work.",
+    category: "Marketing",
+    publishedAt: "2026-06-15",
+    readingTime: "4 min",
+    content: [
+      "A bank branch's image relies heavily on its visual welcome: storefront, lobby, signage.",
+      "Dynamic display lets you communicate about new products without reprinting materials, while keeping a controlled institutional image.",
+      "A facade assessment remains the first step before considering this kind of transformation.",
+    ],
+  },
+];
+
+export function getBlogPosts(locale: Locale = "fr"): BlogPost[] {
+  return locale === "en" ? blogPostsEn : blogPostsFr;
 }
+
+export function getBlogPostBySlug(slug: string, locale: Locale = "fr"): BlogPost | undefined {
+  return getBlogPosts(locale).find((p) => p.slug === slug);
+}
+
+export const blogPosts = blogPostsFr;

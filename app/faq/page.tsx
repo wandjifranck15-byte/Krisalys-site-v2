@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import FaqPageContent from "@/components/pages/FaqPageContent";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 
-// Page conservée en Server Component afin de garder des métadonnées SEO
-// statiques par route (voir README > Internationalisation : les métadonnées
-// ne sont pas encore traduites par langue, car cela nécessiterait une
-// lecture serveur de la locale — non implémentée dans cette passe).
-export const metadata: Metadata = {
-  title: "Questions fréquentes",
-  description:
-    "Toutes les réponses aux questions techniques, commerciales et après-vente sur les solutions d'écrans LED KRISALYS.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const dictionary = getDictionary(locale);
+  return buildMetadata(locale, "/faq", dictionary.seo.faq);
+}
 
 export default function FAQPage() {
   return <FaqPageContent />;

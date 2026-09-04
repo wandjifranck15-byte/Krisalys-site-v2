@@ -10,53 +10,58 @@ import BackToTop from "@/components/layout/BackToTop";
 import Providers from "@/components/providers/Providers";
 import { siteConfig } from "@/lib/utils";
 import { themeInitScript } from "@/lib/theme/ThemeContext";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: "KRISALYS — Écrans LED & solutions visuelles au Cameroun",
-    template: "%s | KRISALYS",
-  },
-  description: siteConfig.description,
-  keywords: [
-    "écran LED Douala",
-    "écran LED Cameroun",
-    "façade numérique Douala",
-    "affichage dynamique Cameroun",
-    "écran publicitaire Cameroun",
-    "écran transparent Douala",
-    "installation écran LED Cameroun",
-    "communication digitale Cameroun",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: "KRISALYS — Écrans LED & solutions visuelles au Cameroun",
-    description: siteConfig.description,
-    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "KRISALYS" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "KRISALYS — Écrans LED & solutions visuelles au Cameroun",
-    description: siteConfig.description,
-    images: ["/images/og-image.png"],
-  },
-  alternates: {
-    canonical: siteConfig.url,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+// Fallback global (utilisé par les pages sans metadata propre, ex.
+// app/not-found.tsx) — désormais localisé via le cookie de langue (voir
+// lib/i18n/server.ts). Les mots-clés restent globaux et volontairement non
+// dupliqués par langue : ce sont des termes de recherche techniques FR,
+// le marché camerounais ciblé restant majoritairement francophone ; à
+// revoir si une stratégie de mots-clés anglais dédiée est souhaitée.
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const dictionary = getDictionary(locale);
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+  return {
+    metadataBase: new URL(siteConfig.url),
+    ...buildMetadata(locale, "", dictionary.seo.home, { absoluteTitle: false }),
+    title: {
+      default: dictionary.seo.home.title,
+      template: "%s | KRISALYS",
+    },
+    keywords: [
+      "film LED transparent Cameroun",
+      "film LED transparent Douala",
+      "écran LED transparent",
+      "façade LED transparente",
+      "vitrine LED transparente",
+      "solution LED vitrine",
+      "écran LED Douala",
+      "écran LED Cameroun",
+      "façade numérique Douala",
+      "affichage dynamique Cameroun",
+      "écran publicitaire Cameroun",
+      "écran transparent Douala",
+      "installation écran LED Cameroun",
+      "communication digitale Cameroun",
+    ],
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
+
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const locale = await getServerLocale();
+  const dictionary = getDictionary(locale);
+
   return (
-    <html lang="fr" className={inter.variable} suppressHydrationWarning>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <head>
         <Script id="krisalys-theme-init" strategy="beforeInteractive">
           {themeInitScript}
@@ -79,24 +84,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 addressLocality: siteConfig.address.locality,
                 addressCountry: siteConfig.address.country,
               },
-              description: siteConfig.description,
+              description: dictionary.seo.home.description,
             }),
           }}
         />
         <Providers>
-         <Script
-    src="https://www.googletagmanager.com/gtag/js?id=G-96GHQPRY1C"
-    strategy="afterInteractive"
-  />
-
-  <Script id="google-analytics" strategy="afterInteractive">
-    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-96GHQPRY1C');
-    `}
-  </Script>
           <Navbar />
           <main className="min-h-screen pt-20">{children}</main>
           <Footer />

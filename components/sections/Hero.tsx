@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
@@ -55,6 +56,13 @@ export default function Hero() {
               {dictionary.common.ctaSecondary}
             </ButtonLink>
           </div>
+          <Link
+            href="/configurateur"
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-krisalys-gray-light transition-colors hover:text-white"
+          >
+            {dictionary.hero.configuratorCta}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </motion.div>
       </Container>
 

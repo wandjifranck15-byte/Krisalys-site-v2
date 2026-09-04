@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import SimulationsPageContent from "@/components/pages/SimulationsPageContent";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Simulations de façades LED",
-  description:
-    "Découvrez des simulations de projets et estimez, grâce à notre configurateur, le type de solution LED adapté à votre bâtiment.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const dictionary = getDictionary(locale);
+  return buildMetadata(locale, "/simulations", dictionary.seo.simulations);
+}
 
 export default function SimulationsPage() {
   return <SimulationsPageContent />;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown, Sun, Moon, Monitor, Globe } from "lucide-react";
 import { mainNav } from "@/data/navigation";
@@ -89,27 +89,14 @@ function LanguageSelector() {
 }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const dictionary = useDictionary();
   const navLabel = useNavLabel();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "bg-krisalys-black/90 shadow-lg backdrop-blur-md" : "bg-transparent"
-      )}
-    >
-      <Container className="flex h-20 items-center justify-between gap-4">
+    <header className="fixed inset-x-0 top-0 z-50 bg-krisalys-black/95 shadow-lg backdrop-blur-md">
+      <Container className="flex h-20 items-center justify-between gap-3">
         <Logo variant="full" priority />
 
         <nav className="hidden items-center gap-1 xl:flex">
@@ -117,7 +104,7 @@ export default function Navbar() {
             <div key={item.href} className="group relative">
               <Link
                 href={item.href}
-                className="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-krisalys-gray-light transition-colors hover:bg-white/5 hover:text-white"
+                className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-krisalys-gray-light transition-colors hover:bg-white/5 hover:text-white"
               >
                 {navLabel(item.href, item.label)}
                 {item.children && <ChevronDown className="h-3.5 w-3.5" />}
@@ -139,30 +126,37 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 xl:flex">
+        {/* Langue + Thème : masqués sous xl pour garantir que le CTA (ci-dessous)
+            ne soit jamais compressé ou repoussé hors champ. Ils restent
+            accessibles à toutes les largeurs via le menu mobile. */}
+        <div className="hidden items-center gap-2 xl:flex">
           <LanguageSelector />
           <ThemeSelector />
-          <ButtonLink href="/contact" size="md">
-            {dictionary.common.ctaPrimary}
-          </ButtonLink>
         </div>
 
-        <div className="flex items-center gap-2 xl:hidden">
-          <LanguageSelector />
-          <ThemeSelector />
-          <button
-            className="text-white"
-            aria-label={mobileOpen ? dictionary.nav.menuClose : dictionary.nav.menuOpen}
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
-          </button>
-        </div>
+        {/* CTA : TOUJOURS visible, à toutes les largeurs d'écran — c'est
+            l'élément commercial le plus important du header, il ne doit
+            jamais dépendre d'un breakpoint. */}
+        <ButtonLink href="/contact" size="md" className="whitespace-nowrap px-3.5 text-xs sm:px-5 sm:text-sm">
+          {dictionary.common.ctaPrimary}
+        </ButtonLink>
+
+        <button
+          className="text-white xl:hidden"
+          aria-label={mobileOpen ? dictionary.nav.menuClose : dictionary.nav.menuOpen}
+          onClick={() => setMobileOpen((v) => !v)}
+        >
+          {mobileOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+        </button>
       </Container>
 
       {mobileOpen && (
         <div className="border-t border-white/10 bg-krisalys-black xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
+            <div className="mb-2 flex items-center gap-2 border-b border-white/10 pb-3">
+              <LanguageSelector />
+              <ThemeSelector />
+            </div>
             {mainNav.map((item) => (
               <div key={item.href}>
                 <div className="flex items-center justify-between rounded-lg text-krisalys-gray-light hover:bg-white/5">

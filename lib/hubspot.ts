@@ -29,7 +29,7 @@ import type { ContactFormValues } from "@/lib/validations/contact";
 //    après le premier contact — aucune valeur fictive n'est envoyée à leur
 //    place.
 // 4. Le nom interne HubSpot de la propriété "Type de bâtiment" n'a pas été
-//    confirmé ; ce module utilise "type_de_batiment" par défaut. À corriger si
+//    confirmé ; ce module utilise "building_type" par défaut. À corriger si
 //    le nom interne réel diffère (Paramètres → Propriétés → Contact).
 
 const HUBSPOT_API_BASE = "https://api.hubapi.com";
@@ -79,7 +79,7 @@ export async function syncContactToHubSpot(
     city: data.city,
     message: data.message,
     // Nom de propriété par défaut, à confirmer côté HubSpot (voir point 4).
-    type_de_batiment: data.buildingType,
+    building_type: data.buildingType,
   };
   if (data.company) contactProperties.company = data.company;
 
@@ -90,7 +90,6 @@ export async function syncContactToHubSpot(
     });
     if (!res.ok) {
       const body = await res.text().catch(() => null);
-      console.error("HUBSPOT_ERROR_BODY:", body);
       console.error(`HubSpot a refusé la création du contact (statut ${res.status}) :`, body);
       return { skipped: false, ok: false, status: res.status, step: "contact" };
     }

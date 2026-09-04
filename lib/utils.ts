@@ -19,7 +19,7 @@ export const siteConfig = {
   legalName: "KRISALYS SARL U",
   tagline: "Nous transformons les façades en supports de communication.",
   description:
-    "KRISALYS conçoit des solutions d'écrans LED et de façades numériques pour les entreprises au Cameroun : hôtels, banques, centres commerciaux, concessionnaires et bien d'autres secteurs.",
+    "KRISALYS conçoit, fournit et installe des solutions de film LED transparent et d'écrans LED pour vitrines et façades vitrées au Cameroun : hôtels, banques, centres commerciaux, concessionnaires automobiles et bien d'autres secteurs.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.krisalysglobal.com",
   email: "contact@krisalysglobal.com",
   phone: "+237 682 90 91 62",

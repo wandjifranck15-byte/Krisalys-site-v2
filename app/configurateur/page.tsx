@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import ConfigurateurPageContent from "@/components/pages/ConfigurateurPageContent";
+import { getServerLocale } from "@/lib/i18n/server";
+import { getDictionary } from "@/lib/i18n/config";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Configurateur de projet",
-  description:
-    "Renseignez les caractéristiques de votre bâtiment et obtenez une première orientation sur la solution LED la plus adaptée à votre projet.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const dictionary = getDictionary(locale);
+  return buildMetadata(locale, "/configurateur", dictionary.seo.configurateur);
+}
 
 export default function ConfigurateurPage() {
   return <ConfigurateurPageContent />;

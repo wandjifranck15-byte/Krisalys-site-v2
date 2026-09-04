@@ -1,12 +1,15 @@
+"use client";
+
 import { MethodStep } from "@/types";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FadeIn from "@/components/animations/FadeIn";
+import { useDictionary } from "@/lib/i18n/LocaleContext";
 
 export default function HowItWorks({
   steps,
-  eyebrow = "Notre méthode",
-  title = "Comment ça fonctionne ?",
+  eyebrow,
+  title,
   light = false,
 }: {
   steps: MethodStep[];
@@ -14,10 +17,14 @@ export default function HowItWorks({
   title?: string;
   light?: boolean;
 }) {
+  const dictionary = useDictionary();
+  const resolvedEyebrow = eyebrow ?? dictionary.pages.home.methodEyebrow;
+  const resolvedTitle = title ?? dictionary.pages.home.methodTitle;
+
   return (
     <section className={light ? "bg-krisalys-black py-24" : "bg-canvas py-24"}>
       <Container>
-        <SectionHeading eyebrow={eyebrow} title={title} light={light} />
+        <SectionHeading eyebrow={resolvedEyebrow} title={resolvedTitle} light={light} />
         <div className="relative mt-14">
           <div className="absolute left-5 top-0 h-full w-px bg-gradient-brand sm:left-1/2" />
           <div className="space-y-10">

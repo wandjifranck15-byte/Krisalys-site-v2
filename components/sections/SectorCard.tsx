@@ -3,7 +3,7 @@ import { Sector } from "@/types";
 import DynamicIcon from "@/components/ui/DynamicIcon";
 import { ArrowRight } from "lucide-react";
 
-export default function SectorCard({ sector }: { sector: Sector }) {
+export default function SectorCard({ sector, viewLabel }: { sector: Sector; viewLabel: string }) {
   return (
     <Link
       href={`/secteurs#${sector.slug}`}
@@ -13,7 +13,7 @@ export default function SectorCard({ sector }: { sector: Sector }) {
       <h3 className="mt-4 text-base font-semibold text-ink">{sector.name}</h3>
       <p className="mt-2 text-sm text-ink-muted">{sector.benefits[0]}</p>
       <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-krisalys-blue-deep">
-        Voir le secteur
+        {viewLabel}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </span>
     </Link>
