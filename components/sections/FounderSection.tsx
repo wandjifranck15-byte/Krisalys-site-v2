@@ -33,8 +33,7 @@ export default function FounderSection() {
               <div className="absolute left-3 top-3 h-4 w-4 border-l-2 border-t-2 border-krisalys-blue-deep/30" />
               <div className="absolute bottom-3 right-3 h-4 w-4 border-b-2 border-r-2 border-krisalys-blue-deep/30" />
             </div>
-            <p className="mx-auto mt-3 max-w-[280px] text-center text-xs text-ink-muted">{f.photoComingSoon}</p>
-            <p className="mx-auto mt-1 max-w-[280px] text-center text-xs tracking-widest text-ink-muted">
+            <p className="mx-auto mt-3 max-w-[280px] text-center text-xs tracking-widest text-ink-muted">
               {f.roleLabel}
             </p>
           </FadeIn>

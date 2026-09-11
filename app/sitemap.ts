@@ -6,6 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/nos-solutions",
+    "/film-led-transparent",
+    "/ecrans-led-transparents",
     "/secteurs",
     "/simulations",
     "/realisations",
@@ -20,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteConfig.url}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
-    priority: route === "" ? 1 : 0.7,
+    priority: route === "" ? 1 : route.startsWith("/film-led") || route.startsWith("/ecrans-led") ? 0.9 : 0.7,
   }));
 
   const blogRoutes = blogPosts.map((post) => ({

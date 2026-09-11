@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
 import CTASection from "@/components/sections/CTASection";
@@ -24,6 +26,15 @@ export default function BlogPostContent({ slug }: { slug: string }) {
               <p key={i}>{paragraph}</p>
             ))}
           </div>
+          {post.relatedLink && (
+            <Link
+              href={post.relatedLink.href}
+              className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-krisalys-blue-deep hover:underline"
+            >
+              {post.relatedLink.label}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          )}
         </Container>
       </article>
       <CTASection />

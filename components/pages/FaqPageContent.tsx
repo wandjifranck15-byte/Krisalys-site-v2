@@ -26,7 +26,7 @@ export default function FaqPageContent() {
     <>
       <section className="bg-canvas py-20">
         <Container className="max-w-3xl">
-          <SectionHeading eyebrow={dictionary.pages.faq.eyebrow} title={dictionary.pages.faq.title} />
+          <SectionHeading eyebrow={dictionary.pages.faq.eyebrow} title={dictionary.pages.faq.title} as="h1" />
           <div className="mt-12 space-y-12">
             {categoryKeys.map((key) => (
               <div key={key}>

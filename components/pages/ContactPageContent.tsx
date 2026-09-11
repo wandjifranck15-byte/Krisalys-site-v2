@@ -15,7 +15,7 @@ export default function ContactPageContent() {
   return (
     <section className="bg-canvas py-20">
       <Container>
-        <SectionHeading eyebrow={c.eyebrow} title={c.title} description={c.description} />
+        <SectionHeading eyebrow={c.eyebrow} title={c.title} description={c.description} as="h1" />
 
         <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-5">
           <div className="lg:col-span-2">

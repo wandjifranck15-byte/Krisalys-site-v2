@@ -1,13 +1,13 @@
 "use client";
 
 import { Project } from "@/types";
-import { getSolutionBySlug } from "@/data/solutions";
+import { getTechnologyBySlug } from "@/data/technologies";
 import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
 export default function ProjectCard({ project }: { project: Project }) {
   const dictionary = useDictionary();
   const { locale } = useLocale();
-  const solution = getSolutionBySlug(project.solutionSlug, locale);
+  const technology = project.technologySlug ? getTechnologyBySlug(project.technologySlug, locale) : null;
 
   return (
     <div className="overflow-hidden rounded-2xl border border-subtle bg-surface shadow-sm">
@@ -26,8 +26,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           <span className="font-medium text-ink">{dictionary.common.objectiveLabel} : </span>
           {project.objective}
         </p>
-        {solution && (
-          <p className="mt-1 text-sm text-krisalys-blue-deep">{dictionary.common.solutionLabel} : {solution.name}</p>
+        {technology && (
+          <p className="mt-1 text-sm text-krisalys-blue-deep">{dictionary.common.solutionLabel} : {technology.name}</p>
         )}
       </div>
     </div>

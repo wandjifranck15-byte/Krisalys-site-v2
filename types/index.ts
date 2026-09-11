@@ -1,5 +1,7 @@
 // Types partagés du projet KRISALYS
 
+import type { Technology as TechnologySlug } from "@/lib/configurator/types";
+
 export type Locale = "fr" | "en";
 
 // Forme structurelle du dictionnaire de traduction (lib/i18n). Utiliser ce type explicite plutôt que
@@ -45,6 +47,14 @@ export interface Dictionary {
     // Libellés de navigation indexés par href (data/navigation.ts reste la
     // source unique des routes ; ce dictionnaire ne fait que les traduire).
     labels: Record<string, string>;
+    // Libellés des catégories de méga-menu (ne correspondent à aucune page
+    // réelle, donc indexés par un id stable plutôt que par href).
+    categoryLabels: {
+      solutions: string;
+      applications: string;
+      votreProjet: string;
+      ressources: string;
+    };
   };
   hero: {
     eyebrow: string;
@@ -52,11 +62,68 @@ export interface Dictionary {
     subtitle: string;
     configuratorCta: string;
   };
+  pilier: {
+    sectionHowItWorks: string;
+    sectionWhyUseIt: string;
+    sectionCriteria: string;
+    sectionConstraints: string;
+    sectionVariants: string;
+    sectionApplications: string;
+    applicationsCta: string;
+    applicationsNote: string;
+    hesitationTitle: string;
+    hesitationDescription: string;
+    hesitationCta: string;
+    ctaConfigure: string;
+    sectionPrinciple: string;
+    criteriaIntro: string;
+    configurationNote: string;
+    sectionAccompaniment: string;
+    accompanimentCta: string;
+    maintenanceCta: string;
+    finalCtaTitle: string;
+    finalCtaStudy: string;
+    finalCtaRealisations: string;
+    filmHeroSubtitle: string;
+    ecranHeroSubtitle: string;
+  };
   pages: {
-    home: { methodEyebrow: string; methodTitle: string; faqEyebrow: string; faqTitle: string; proofsEyebrow: string; proofsTitle: string; proofsDescription: string; whyEyebrow: string; whyTitle: string; whyItems: { title: string; description: string }[]; solutionsEyebrow: string; solutionsTitle: string; solutionsDescription: string; solutionsSpecialtyBadge: string; projectionEyebrow: string; projectionTitle: string; projectionDescription: string };
+    home: { methodEyebrow: string; methodTitle: string; faqEyebrow: string; faqTitle: string; proofsEyebrow: string; proofsTitle: string; proofsDescription: string; whyEyebrow: string; whyTitle: string; whyItems: { title: string; description: string }[]; solutionsEyebrow: string; solutionsTitle: string; solutionsDescription: string; projectionEyebrow: string; projectionTitle: string; projectionDescription: string };
     faq: { eyebrow: string; title: string; ctaTitle: string };
-    methode: { eyebrow: string; title: string; description: string; stepsEyebrow: string; stepsTitle: string; ctaTitle: string };
-    maintenance: { eyebrow: string; title: string; description: string; ctaTitle: string; ctaLabel: string };
+    methode: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      stepsEyebrow: string;
+      stepsTitle: string;
+      whySectionTitle: string;
+      whySectionBody: string;
+      analysisToSolutionTitle: string;
+      analysisToSolutionBody: string;
+      afterInstallTitle: string;
+      afterInstallBody: string;
+      afterInstallCta: string;
+      ctaTitle: string;
+      ctaConfigureLabel: string;
+      ctaStudyLabel: string;
+    };
+    maintenance: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      whySectionTitle: string;
+      whySectionBody: string;
+      groupMaintenanceTitle: string;
+      groupSupportTitle: string;
+      groupAccompanimentTitle: string;
+      projectNote: string;
+      warrantyNote: string;
+      afterInstallTitle: string;
+      afterInstallBody: string;
+      afterInstallCta: string;
+      ctaTitle: string;
+      ctaLabel: string;
+    };
     contact: {
       eyebrow: string;
       title: string;
@@ -89,8 +156,26 @@ export interface Dictionary {
       values: { name: string; description: string }[];
       commitments: string[];
     };
-    nosSolutions: { eyebrow: string; title: string; description: string; visualPlaceholder: string; cta: string; finalCta: string };
-    secteurs: { eyebrow: string; title: string; description: string };
+    nosSolutions: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      techLabel: string;
+      cta: string;
+    };
+    secteurs: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      introTitle: string;
+      introBody: string;
+      technologiesNoteLabel: string;
+      technologiesNote: string;
+      ctaConfigureLabel: string;
+      processTitle: string;
+      processBody: string;
+      processCta: string;
+    };
     realisations: {
       eyebrow: string;
       title: string;
@@ -98,6 +183,11 @@ export interface Dictionary {
       intlEyebrow: string;
       intlTitle: string;
       intlDisclaimer: string;
+      distinctionNote: string;
+      designEyebrow: string;
+      designTitle: string;
+      designDescription: string;
+      designCta: string;
     };
     blog: { eyebrow: string; title: string; readArticle: string };
     legal: {
@@ -149,6 +239,8 @@ export interface Dictionary {
     home: { title: string; description: string };
     aPropos: { title: string; description: string };
     nosSolutions: { title: string; description: string };
+    filmLedTransparent: { title: string; description: string };
+    ecransLedTransparents: { title: string; description: string };
     secteurs: { title: string; description: string };
     realisations: { title: string; description: string };
     simulations: { title: string; description: string };
@@ -167,7 +259,6 @@ export interface Dictionary {
     title: string;
     paragraph1: string;
     paragraph2: string;
-    photoComingSoon: string;
     roleLabel: string;
     paragraph3: string;
     paragraph4: string;
@@ -194,18 +285,55 @@ export interface Dictionary {
     resultPrompt: string;
     estimationBadge: string;
     cta: string;
-    results: {
-      dynamicName: string;
-      dynamicReasoning: string;
-      exteriorLargeName: string;
-      exteriorLargeReasoning: string;
-      exteriorSmallName: string;
-      exteriorSmallReasoning: string;
-      interiorGlassName: string;
-      interiorGlassReasoning: string;
-      interiorName: string;
-      interiorReasoning: string;
-      disclaimer: string;
+  };
+  configuratorWizard: {
+    stepOf: string; // "Étape {current} sur {total}"
+    next: string;
+    back: string;
+    steps: {
+      building: { title: string; buildingType: string; buildingTypePlaceholder: string; usage: string; usagePlaceholder: string; usageHelp: string; projectContext: string; projectContextHelp: string; existingGlazing: string; newOrRenovation: string; unknownContext: string };
+      dimensions: { title: string; width: string; height: string; widthHelp: string; city: string; cityPlaceholder: string; surfaceOverrideLabel: string; surfaceOverrideHelp: string; surfaceOverrideToggle: string };
+      environment: { title: string; environment: string; interior: string; exterior: string; viewingDistance: string; viewingDistanceHelp: string; close: string; medium: string; far: string; unknown: string; ambientLight: string; ambientLightHelp: string; low: string; high: string };
+      preferences: { title: string; transparency: string; transparencyHelp: string; contentType: string; contentTypePlaceholder: string; objective: string; objectiveHelp: string; objectivePlaceholder: string };
+      technology: { title: string; preference: string; preferenceHelp: string; preferFilm: string; preferEcran: string; noPreference: string; constraints: string; constraintsPlaceholder: string };
+      contact: { title: string; name: string; email: string; phone: string; company: string; photoLabel: string; photoHelp: string; submit: string; submitting: string; successTitle: string; successBody: string; errorServer: string };
+    };
+    result: {
+      title: string;
+      estimationBadge: string;
+      technologyLabel: string;
+      alternativeLabel: string;
+      pitchLabel: string;
+      pitchUnknown: string;
+      pitchMultiple: string;
+      studyRequiredTitle: string;
+      studyRequiredBody: string;
+      twoSolutionsTitle: string;
+      priceEstimateLabel: string;
+      priceUnavailable: string;
+      priceholderNotice: string;
+      ctaSimulation: string;
+      ctaStudy: string;
+    };
+    reasoning: {
+      existingGlazingFavoursFilm: string;
+      newOrRenovationFavoursEcran: string;
+      clientPreferenceFilm: string;
+      clientPreferenceEcran: string;
+      insufficientDataForTechnology: string;
+      twoTechnologiesRelevant: string;
+      viewingDistanceClose: string;
+      viewingDistanceFar: string;
+      viewingDistanceMedium: string;
+      viewingDistanceUnknown: string;
+    };
+    warnings: {
+      filmNotInCatalog: string;
+      ecranNotInCatalog: string;
+      highTransparencyContextOnly: string;
+      highAmbientLightContextOnly: string;
+      missingPixelDensity: string;
+      pitchStudyRequired: string;
     };
   };
   whatsapp: {
@@ -229,18 +357,32 @@ export interface NavItem {
   label: string;
   href: string;
   children?: NavItem[];
+  // Identifiant stable pour les libellés de catégorie (ex. "Solutions",
+  // "Applications") qui ne correspondent à aucune page réelle et ne
+  // peuvent donc pas être traduits via nav.labels (indexé par href) —
+  // voir nav.categoryLabels dans le dictionnaire.
+  categoryId?: string;
+  // true uniquement pour une catégorie qui correspond à une page réelle
+  // (ex. "Solutions" → /nos-solutions) : dans ce cas, le libellé de
+  // catégorie reste cliquable (navigation) EN PLUS d'ouvrir son sous-menu,
+  // contrairement aux catégories purement organisationnelles.
+  hasOwnPage?: boolean;
 }
 
-export interface Solution {
+export interface Technology {
   slug: string;
   name: string;
+  eyebrow: string;
   shortDescription: string;
   description: string;
-  benefits: string[];
-  useCases: string[];
-  technicalNotes: string[];
+  howItWorks: string[];
+  whyUseIt: string[];
+  criteria: string[];
+  constraints: string[];
   recommendedFor: string[];
+  variants: { title: string; description: string }[];
   icon: string; // nom de l'icône Lucide
+  ctaLabel: string;
 }
 
 export interface Sector {
@@ -250,7 +392,6 @@ export interface Sector {
   problems: string[];
   benefits: string[];
   useCases: string[];
-  recommendedSolutionSlug: string;
   ctaLabel: string;
 }
 
@@ -261,7 +402,12 @@ export interface Project {
   buildingType: string;
   city: string;
   objective: string;
-  solutionSlug: string;
+  // Rattachement à l'une des deux technologies piliers (voir
+  // data/technologies.ts). `null` lorsque le contenu existant ne permet
+  // pas de déterminer honnêtement laquelle des deux technologies
+  // transparentes s'applique (ex. ancien projet "écran extérieur" classique,
+  // sans mention de transparence) — jamais une supposition.
+  technologySlug: TechnologySlug | null;
   isSimulation: boolean; // true = simulation/rendu, false = installation réelle
   description: string;
 }
@@ -279,16 +425,33 @@ export interface FAQItem {
   category: "technique" | "commercial" | "apres-vente";
 }
 
+export type MethodStepCategory =
+  | "understanding"
+  | "analysis"
+  | "recommendation"
+  | "configuration"
+  | "design"
+  | "supply"
+  | "installation"
+  | "maintenance";
+
 export interface MethodStep {
   step: number;
   title: string;
   description: string;
+  // Catégorie conceptuelle stable (indépendante de la langue), utilisée
+  // pour dériver des vues partielles du processus (voir data/method-steps.ts
+  // getDesignSteps/getMethodSummary) sans dupliquer le texte.
+  category: MethodStepCategory;
 }
+
+export type MaintenanceGroup = "maintenance" | "support" | "accompaniment";
 
 export interface MaintenanceOffering {
   title: string;
   description: string;
   icon: string;
+  group: MaintenanceGroup;
 }
 
 export interface Division {
@@ -315,6 +478,9 @@ export interface BlogPost {
   publishedAt: string;
   readingTime: string;
   content: string[];
+  // Lien contextuel vers la page pilier ou le configurateur pertinent —
+  // évite de dupliquer le contenu commercial dans l'article (Phase 11).
+  relatedLink: { href: string; label: string } | null;
 }
 
 export interface ConfiguratorInput {

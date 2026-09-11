@@ -6,6 +6,24 @@ import type { Locale } from "@/types";
 // installation réelle achevée tant que isSimulation === true. Ne jamais
 // modifier ce statut sans confirmation qu'il s'agit d'une réalisation
 // effective de KRISALYS. "city" (Douala) est un nom propre, non traduit.
+//
+// MIGRATION PHASE 5 — technologySlug remplace l'ancien solutionSlug
+// (catalogue à 5 familles, data/solutions.ts). Rattachement fait
+// honnêtement à partir du texte déjà écrit pour chaque projet, jamais
+// deviné :
+// - simulation-agence-bancaire-douala : description mentionne explicitement
+//   "écran LED transparent" → ecran-led-transparent.
+// - simulation-showroom-automobile : utilisait le même ancien solutionSlug
+//   ("transparent" = l'ancienne famille "Écrans LED transparents", jamais
+//   nommée "film") → ecran-led-transparent, par cohérence avec l'ancien
+//   rattachement, pas par supposition nouvelle.
+// - simulation-centre-commercial : ancien solutionSlug "exterieur"
+//   correspondait à un écran LED extérieur CLASSIQUE (pas transparent) —
+//   ni "film-led-transparent" ni "ecran-led-transparent" ne peuvent être
+//   affirmés honnêtement à partir du contenu existant. Laissé à `null`
+//   volontairement (voir ProjectCard.tsx, qui n'affiche alors aucune
+//   ligne technologie plutôt que d'en inventer une) — signalé dans le
+//   bilan de phase, à traiter par un vrai contenu réécrit si besoin.
 const projectsFr: Project[] = [
   {
     slug: "simulation-agence-bancaire-douala",
@@ -14,7 +32,7 @@ const projectsFr: Project[] = [
     buildingType: "Agence bancaire",
     city: "Douala",
     objective: "Moderniser la vitrine tout en conservant la transparence de la façade",
-    solutionSlug: "transparent",
+    technologySlug: "ecran-led-transparent",
     isSimulation: true,
     description: "Projection visuelle réalisée à partir d'une photo de façade, illustrant l'intégration d'un écran LED transparent sur la vitrine principale.",
   },
@@ -25,7 +43,7 @@ const projectsFr: Project[] = [
     buildingType: "Showroom",
     city: "Douala",
     objective: "Mettre en scène les nouveaux modèles exposés en vitrine",
-    solutionSlug: "transparent",
+    technologySlug: "ecran-led-transparent",
     isSimulation: true,
     description: "Rendu illustrant l'intégration d'un affichage transparent sur la façade vitrée d'un showroom automobile.",
   },
@@ -36,7 +54,7 @@ const projectsFr: Project[] = [
     buildingType: "Centre commercial",
     city: "Douala",
     objective: "Renforcer la visibilité depuis l'axe principal",
-    solutionSlug: "exterieur",
+    technologySlug: null,
     isSimulation: true,
     description: "Projection d'un écran LED extérieur en façade principale, pensée pour la visibilité depuis la voie de circulation.",
   },
@@ -50,7 +68,7 @@ const projectsEn: Project[] = [
     buildingType: "Bank branch",
     city: "Douala",
     objective: "Modernize the storefront while preserving the facade's transparency",
-    solutionSlug: "transparent",
+    technologySlug: "ecran-led-transparent",
     isSimulation: true,
     description: "A visual projection produced from a facade photo, illustrating the integration of a transparent LED screen on the main storefront.",
   },
@@ -61,7 +79,7 @@ const projectsEn: Project[] = [
     buildingType: "Showroom",
     city: "Douala",
     objective: "Showcase the new models displayed in the showroom window",
-    solutionSlug: "transparent",
+    technologySlug: "ecran-led-transparent",
     isSimulation: true,
     description: "A rendering illustrating the integration of a transparent display on the glazed facade of a car showroom.",
   },
@@ -72,7 +90,7 @@ const projectsEn: Project[] = [
     buildingType: "Shopping mall",
     city: "Douala",
     objective: "Strengthen visibility from the main road",
-    solutionSlug: "exterieur",
+    technologySlug: null,
     isSimulation: true,
     description: "A projection of an outdoor LED screen on the main facade, designed for visibility from the road.",
   },
@@ -107,7 +125,7 @@ const externalReferencesEn: ExternalReference[] = [
     title: "Transparent LED facades in dense urban environments",
     country: "International examples",
     description: "An illustration of the kind of rendering that transparent LED screen technologies enable on large-scale glazed facades.",
-    sourceLabel: "Example of existing technology — not carried out by KRISALYS",
+    sourceLabel: "Example of existing  — not carried out by KRISALYS",
   },
   {
     title: "Multi-site dynamic display across a distribution network",

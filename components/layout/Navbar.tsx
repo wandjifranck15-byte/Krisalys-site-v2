@@ -100,30 +100,45 @@ export default function Navbar() {
         <Logo variant="full" priority />
 
         <nav className="hidden items-center gap-1 xl:flex">
-          {mainNav.map((item) => (
-            <div key={item.href} className="group relative">
-              <Link
-                href={item.href}
-                className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-krisalys-gray-light transition-colors hover:bg-white/5 hover:text-white"
-              >
-                {navLabel(item.href, item.label)}
-                {item.children && <ChevronDown className="h-3.5 w-3.5" />}
-              </Link>
-              {item.children && (
-                <div className="invisible absolute left-0 top-full z-10 min-w-[260px] rounded-xl border border-white/10 bg-krisalys-charcoal p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="block rounded-lg px-4 py-2 text-sm text-krisalys-gray-light hover:bg-white/5 hover:text-white"
-                    >
-                      {navLabel(child.href, child.label)}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          {mainNav.map((item) => {
+            const label = item.categoryId
+              ? dictionary.nav.categoryLabels[item.categoryId as keyof typeof dictionary.nav.categoryLabels]
+              : navLabel(item.href, item.label);
+            return (
+              <div key={item.href} className="group relative">
+                {item.children && !item.hasOwnPage ? (
+                  <button
+                    type="button"
+                    className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-krisalys-gray-light transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {label}
+                    <ChevronDown className="h-3.5 w-3.5" />
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-krisalys-gray-light transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {label}
+                    {item.children && <ChevronDown className="h-3.5 w-3.5" />}
+                  </Link>
+                )}
+                {item.children && (
+                  <div className="invisible absolute left-0 top-full z-10 min-w-[260px] rounded-xl border border-white/10 bg-krisalys-charcoal p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block rounded-lg px-4 py-2 text-sm text-krisalys-gray-light hover:bg-white/5 hover:text-white"
+                      >
+                        {navLabel(child.href, child.label)}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Langue + Thème : masqués sous xl pour garantir que le CTA (ci-dessous)
@@ -157,46 +172,62 @@ export default function Navbar() {
               <LanguageSelector />
               <ThemeSelector />
             </div>
-            {mainNav.map((item) => (
-              <div key={item.href}>
-                <div className="flex items-center justify-between rounded-lg text-krisalys-gray-light hover:bg-white/5">
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex-1 px-3 py-3 text-left"
-                  >
-                    {navLabel(item.href, item.label)}
-                  </Link>
-                  {item.children && (
-                    <button
-                      type="button"
-                      aria-label={dictionary.nav.menuOpen}
-                      aria-expanded={openSubmenu === item.href}
-                      onClick={() => setOpenSubmenu(openSubmenu === item.href ? null : item.href)}
-                      className="px-3 py-3"
-                    >
-                      <ChevronDown
-                        className={cn("h-4 w-4 transition-transform", openSubmenu === item.href && "rotate-180")}
-                      />
-                    </button>
+            {mainNav.map((item) => {
+              const label = item.categoryId
+                ? dictionary.nav.categoryLabels[item.categoryId as keyof typeof dictionary.nav.categoryLabels]
+                : navLabel(item.href, item.label);
+              return (
+                <div key={item.href}>
+                  <div className="flex items-center justify-between rounded-lg text-krisalys-gray-light hover:bg-white/5">
+                    {item.children && !item.hasOwnPage ? (
+                      <button
+                        type="button"
+                        aria-expanded={openSubmenu === item.href}
+                        onClick={() => setOpenSubmenu(openSubmenu === item.href ? null : item.href)}
+                        className="flex-1 px-3 py-3 text-left"
+                      >
+                        {label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="flex-1 px-3 py-3 text-left"
+                      >
+                        {label}
+                      </Link>
+                    )}
+                    {item.children && (
+                      <button
+                        type="button"
+                        aria-label={dictionary.nav.menuOpen}
+                        aria-expanded={openSubmenu === item.href}
+                        onClick={() => setOpenSubmenu(openSubmenu === item.href ? null : item.href)}
+                        className="px-3 py-3"
+                      >
+                        <ChevronDown
+                          className={cn("h-4 w-4 transition-transform", openSubmenu === item.href && "rotate-180")}
+                        />
+                      </button>
+                    )}
+                  </div>
+                  {item.children && openSubmenu === item.href && (
+                    <div className="ml-3 border-l border-white/10 pl-3">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block rounded-lg px-3 py-2 text-sm text-krisalys-gray-light hover:bg-white/5"
+                        >
+                          {navLabel(child.href, child.label)}
+                        </Link>
+                      ))}
+                    </div>
                   )}
                 </div>
-                {item.children && openSubmenu === item.href && (
-                  <div className="ml-3 border-l border-white/10 pl-3">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="block rounded-lg px-3 py-2 text-sm text-krisalys-gray-light hover:bg-white/5"
-                      >
-                        {navLabel(child.href, child.label)}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+              );
+            })}
             <ButtonLink href="/contact" size="md" className="mt-3 w-full">
               {dictionary.common.ctaPrimary}
             </ButtonLink>
