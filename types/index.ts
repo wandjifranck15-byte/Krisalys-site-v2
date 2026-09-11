@@ -309,6 +309,9 @@ export interface Dictionary {
       studyRequiredTitle: string;
       studyRequiredBody: string;
       twoSolutionsTitle: string;
+      singleSolutionTitle: string;
+      singleSolutionIntro: string;
+      singleSolutionValidation: string;
       priceEstimateLabel: string;
       priceUnavailable: string;
       priceholderNotice: string;

@@ -447,6 +447,30 @@ function ResultPanel({
 
   const isStudyRequired = engineDerivedData.state === "technicalStudyRequired";
 
+  // Une seule technologie est disponible au catalogue (fait de catalogue,
+  // voir lib/configurator/filter.ts) mais une recommandation a tout de
+  // même été déterminée : c'est la technologie disponible qui est
+  // proposée, même si le contexte du projet penchait plutôt vers l'autre
+  // (voir lib/configurator/scoreTechnology.ts). Dans ce cas précis, le
+  // panneau présente une "solution proposée" plutôt qu'une simple
+  // étiquette technologie/pitch — comportement commercial validé.
+  const isSingleTechAvailable =
+    !isStudyRequired &&
+    engineDerivedData.recommendedTechnology !== null &&
+    engineDerivedData.technologiesEligible.length === 1;
+
+  const recommendedTechName = techName(engineDerivedData.recommendedTechnology) ?? "";
+
+  // Avertissements de fait de catalogue (technologie absente) : jamais
+  // montrés au client — l'étude technique est présentée comme une
+  // validation de la configuration, jamais comme une absence de produit
+  // (comportement commercial validé). Conservés dans
+  // engineDerivedData.warnings pour l'équipe commerciale (transmis à
+  // HubSpot via /api/configurateur).
+  const clientWarnings = engineDerivedData.warnings.filter(
+    (key) => key !== "filmNotInCatalog" && key !== "ecranNotInCatalog"
+  );
+
   return (
     <div className="rounded-2xl border border-subtle bg-surface p-6 shadow-sm sm:p-8">
       <div className="flex items-center gap-2 text-krisalys-blue-deep">
@@ -461,12 +485,25 @@ function ResultPanel({
         </>
       ) : (
         <>
-          {engineDerivedData.state === "twoRelevantSolutions" && (
-            <h3 className="mt-4 text-lg font-semibold text-ink">{r.twoSolutionsTitle}</h3>
+          {isSingleTechAvailable ? (
+            <>
+              <h3 className="mt-4 text-xl font-bold text-ink">
+                {r.singleSolutionTitle.replace("{technology}", recommendedTechName)}
+              </h3>
+              <p className="mt-2 text-sm text-ink-muted">
+                {r.singleSolutionIntro.replace("{technology}", recommendedTechName)}
+              </p>
+            </>
+          ) : (
+            <>
+              {engineDerivedData.state === "twoRelevantSolutions" && (
+                <h3 className="mt-4 text-lg font-semibold text-ink">{r.twoSolutionsTitle}</h3>
+              )}
+              <h3 className="mt-4 text-xl font-bold text-ink">
+                {r.technologyLabel}: {recommendedTechName}
+              </h3>
+            </>
           )}
-          <h3 className="mt-4 text-xl font-bold text-ink">
-            {r.technologyLabel}: {techName(engineDerivedData.recommendedTechnology)}
-          </h3>
           {engineDerivedData.alternativeTechnology && (
             <p className="mt-1 text-sm text-ink-muted">
               {r.alternativeLabel}: {techName(engineDerivedData.alternativeTechnology)}
@@ -491,15 +528,19 @@ function ResultPanel({
         </ul>
       )}
 
-      {engineDerivedData.warnings.length > 0 && (
+      {clientWarnings.length > 0 && (
         <div className="mt-4 space-y-2">
-          {engineDerivedData.warnings.map((key) => (
+          {clientWarnings.map((key) => (
             <div key={key} className="flex items-start gap-2 rounded-lg border border-krisalys-orange/30 bg-krisalys-orange/10 p-3 text-xs text-krisalys-orange-dark">
               <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
               <span>{warnings[key] ?? key}</span>
             </div>
           ))}
         </div>
+      )}
+
+      {isSingleTechAvailable && (
+        <p className="mt-4 text-sm text-ink-muted">{r.singleSolutionValidation}</p>
       )}
 
       {!isStudyRequired && (

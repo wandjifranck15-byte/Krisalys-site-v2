@@ -155,5 +155,42 @@ const base: ClientDeclaredData = {
   assertEqual(r.technologyConfidence, "high", "L - confidence");
 }
 
+// M — comportement commercial (catalogue réel) : Film seul disponible au
+// catalogue, mais le projet favorise l'Écran (new-or-renovation). Le Film
+// reste techniquement compatible : il doit être proposé comme solution
+// disponible, jamais un technicalStudyRequired déguisé en absence de
+// produit (voir demande "adapter le comportement commercial").
+{
+  const filmOnlyCatalog = testProducts.filter((p) => p.technology === "film-led-transparent");
+  const r = recommend({ ...base, projectContext: "new-or-renovation", viewingDistance: "close" }, filmOnlyCatalog);
+  assertEqual(r.technologiesEligible, ["film-led-transparent"], "M - only film eligible (catalog fact)");
+  assertEqual(r.state, "clearRecommendation", "M - state (Film proposé malgré préférence contextuelle Écran)");
+  assertEqual(r.recommendedTechnology, "film-led-transparent", "M - technology");
+  assertEqual(r.technologyConfidence, "medium", "M - confidence medium (contexte penchait vers Écran)");
+  assertEqual(r.recommendedPitch, 6.25, "M - pitch (TEST-FILM-A, close)");
+}
+
+// N — même catalogue Film seul, mais préférence explicite Écran (sans
+// contexte projet) : même exigence, la préférence Écran ne doit jamais
+// bloquer une proposition Film compatible.
+{
+  const filmOnlyCatalog = testProducts.filter((p) => p.technology === "film-led-transparent");
+  const r = recommend({ ...base, technologyPreference: "ecran" }, filmOnlyCatalog);
+  assertEqual(r.state, "clearRecommendation", "N - state");
+  assertEqual(r.recommendedTechnology, "film-led-transparent", "N - technology");
+  assertEqual(r.technologyConfidence, "medium", "N - confidence medium");
+}
+
+// O — catalogue Film seul, AUCUN signal déclaré (0-0) : le
+// technicalStudyRequired doit rester possible quand les données sont
+// réellement insuffisantes (pas de régression sur ce cas).
+{
+  const filmOnlyCatalog = testProducts.filter((p) => p.technology === "film-led-transparent");
+  const r = recommend({ ...base }, filmOnlyCatalog);
+  assertEqual(r.state, "technicalStudyRequired", "O - state (aucun signal, pas un fait de catalogue)");
+  assertEqual(r.recommendedTechnology, null, "O - no technology");
+  assertEqual(r.technologyConfidence, "low", "O - confidence low");
+}
+
 console.log(`\n${passed} test(s) réussi(s), ${failed} échec(s).`);
 if (failed > 0) process.exit(1);

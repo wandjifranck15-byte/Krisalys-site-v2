@@ -51,8 +51,17 @@ export function scoreTechnology(data: ClientDeclaredData): TechnologyScoreResult
  * ÉTAPE D — détermination de l'état à partir de l'écart en points bruts
  * (pas en pourcentage, pour rester lisible et testable) entre les deux
  * technologies ÉLIGIBLES (voir filter.ts). Si une seule technologie est
- * éligible (fait de catalogue), elle est retenue directement avec
- * confidence "high" si son score brut est > 0, sinon technicalStudyRequired.
+ * éligible (fait de catalogue), elle est retenue dès qu'un signal existe
+ * — sur cette technologie OU sur l'autre. Une préférence/un contexte
+ * favorisant la technologie absente du catalogue (ex. écran) ne doit
+ * jamais se traduire par une absence de proposition : la technologie
+ * disponible reste techniquement compatible et est proposée comme
+ * solution, avec confidence "medium" (le contexte penchait plutôt vers
+ * l'autre technologie) ou "high" (le contexte penchait vers elle ou
+ * était neutre). technicalStudyRequired n'est retenu ici que lorsque
+ * AUCUN signal n'existe (0-0), c'est-à-dire quand les données déclarées
+ * sont réellement insuffisantes — jamais comme façon détournée de
+ * signaler un fait de catalogue (voir comportement commercial validé).
  */
 export function resolveTechnologyState(
   scores: TechnologyScoreResult,
@@ -65,23 +74,24 @@ export function resolveTechnologyState(
 } {
   const filmEligible = eligible.includes("film-led-transparent");
   const ecranEligible = eligible.includes("ecran-led-transparent");
+  const hasSignal = scores.filmRaw > 0 || scores.ecranRaw > 0;
 
   // Une seule technologie disponible au catalogue (fait de catalogue,
   // jamais une exclusion technique supposée).
   if (filmEligible && !ecranEligible) {
     return {
-      state: scores.filmRaw > 0 ? "clearRecommendation" : "technicalStudyRequired",
-      recommendedTechnology: scores.filmRaw > 0 ? "film-led-transparent" : null,
+      state: hasSignal ? "clearRecommendation" : "technicalStudyRequired",
+      recommendedTechnology: hasSignal ? "film-led-transparent" : null,
       alternativeTechnology: null,
-      technologyConfidence: scores.filmRaw > 0 ? "high" : "low",
+      technologyConfidence: !hasSignal ? "low" : scores.filmRaw >= scores.ecranRaw ? "high" : "medium",
     };
   }
   if (ecranEligible && !filmEligible) {
     return {
-      state: scores.ecranRaw > 0 ? "clearRecommendation" : "technicalStudyRequired",
-      recommendedTechnology: scores.ecranRaw > 0 ? "ecran-led-transparent" : null,
+      state: hasSignal ? "clearRecommendation" : "technicalStudyRequired",
+      recommendedTechnology: hasSignal ? "ecran-led-transparent" : null,
       alternativeTechnology: null,
-      technologyConfidence: scores.ecranRaw > 0 ? "high" : "low",
+      technologyConfidence: !hasSignal ? "low" : scores.ecranRaw >= scores.filmRaw ? "high" : "medium",
     };
   }
   if (!filmEligible && !ecranEligible) {
