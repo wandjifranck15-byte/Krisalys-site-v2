@@ -35,7 +35,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY) as ThemeChoice | null;
+    // localStorage peut lever (navigation privée Safari, stockage désactivé,
+    // certaines webviews embarquées) : un effet de montage qui plante sans
+    // filet fait échouer le rendu de toute l'application (voir
+    // lib/i18n/LocaleContext.tsx pour le même garde-fou).
+    let stored: string | null = null;
+    try {
+      stored = window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+      // Stockage indisponible : repli sur "system" ci-dessous.
+    }
     const initial: ThemeChoice = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
     setThemeState(initial);
     const resolved = resolveTheme(initial);
@@ -57,7 +66,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const setTheme = (next: ThemeChoice) => {
     setThemeState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      // Stockage indisponible : préférence non persistée, session en cours préservée.
+    }
     const resolved = resolveTheme(next);
     setResolvedTheme(resolved);
     applyTheme(resolved);

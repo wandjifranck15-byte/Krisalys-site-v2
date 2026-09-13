@@ -148,6 +148,7 @@ export interface Dictionary {
       ctaLabel: string;
     };
     notFound: { eyebrow: string; title: string; description: string; cta: string };
+    error: { eyebrow: string; title: string; description: string; retry: string; cta: string };
     aPropos: {
       valuesTitle: string;
       commitmentsTitle: string;
@@ -191,24 +192,43 @@ export interface Dictionary {
     };
     blog: { eyebrow: string; title: string; readArticle: string };
     legal: {
-      conditionsTitle: string;
-      conditionsP1: string;
-      conditionsP2: string;
-      confidentialiteTitle: string;
-      confidentialiteP1: string;
-      confidentialiteP2: string;
-      confidentialiteP3: string;
-      mentionsTitle: string;
-      denomination: string;
-      formeJuridique: string;
-      formeJuridiqueValue: string;
-      capitalSocial: string;
-      siegeSocial: string;
-      rccm: string;
-      niu: string;
-      gerant: string;
-      contact: string;
-      site: string;
+      lastUpdated: string;
+      mentions: {
+        title: string;
+        editorHeading: string;
+        denomination: string;
+        formeJuridique: string;
+        formeJuridiqueValue: string;
+        capitalSocial: string;
+        siegeSocial: string;
+        rccm: string;
+        niu: string;
+        gerant: string;
+        activite: string;
+        activiteValue: string;
+        contact: string;
+        site: string;
+        hostingHeading: string;
+        hostingBody: string;
+        ipHeading: string;
+        ipBody: string;
+        liabilityHeading: string;
+        liabilityBody: string;
+        lawHeading: string;
+        lawBody: string;
+        contactHeading: string;
+        contactBody: string;
+      };
+      terms: {
+        title: string;
+        intro: string;
+        sections: { heading: string; body: string[] }[];
+      };
+      privacy: {
+        title: string;
+        intro: string;
+        sections: { heading: string; body: string[] }[];
+      };
     };
   };
   form: {
@@ -250,9 +270,9 @@ export interface Dictionary {
     faq: { title: string; description: string };
     contact: { title: string; description: string };
     blog: { title: string; description: string };
-    conditions: { title: string };
-    confidentialite: { title: string };
-    mentionsLegales: { title: string };
+    conditions: { title: string; description: string };
+    confidentialite: { title: string; description: string };
+    mentionsLegales: { title: string; description: string };
   };
   founder: {
     eyebrow: string;

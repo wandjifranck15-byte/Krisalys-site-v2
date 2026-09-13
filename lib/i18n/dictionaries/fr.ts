@@ -204,6 +204,13 @@ const fr: Dictionary = {
       description: "Le lien suivi est peut-être incorrect ou la page a été déplacée.",
       cta: "Retour à l'accueil",
     },
+    error: {
+      eyebrow: "Une erreur est survenue",
+      title: "Quelque chose s'est mal passé.",
+      description: "Une erreur inattendue a interrompu l'affichage de cette page. Vous pouvez réessayer, ou nous contacter directement si le problème persiste.",
+      retry: "Réessayer",
+      cta: "Nous contacter",
+    },
     aPropos: {
       valuesTitle: "Ce qui guide chaque projet",
       commitmentsTitle: "Nos engagements",
@@ -263,24 +270,176 @@ const fr: Dictionary = {
     },
     blog: { eyebrow: "Blog", title: "Ressources & actualités KRISALYS", readArticle: "Lire l'article" },
     legal: {
-      conditionsTitle: "Conditions d'utilisation",
-      conditionsP1: "L'utilisation de ce site implique l'acceptation des présentes conditions. Les simulations et estimations fournies par le configurateur sont indicatives et ne constituent pas un engagement contractuel.",
-      conditionsP2: "Contenu à finaliser avec le conseil juridique de KRISALYS avant mise en production.",
-      confidentialiteTitle: "Politique de confidentialité",
-      confidentialiteP1: "Les informations transmises via le formulaire de contact (nom, entreprise, téléphone, email, ville, type de bâtiment, message) sont utilisées uniquement pour traiter votre demande de simulation et vous recontacter.",
-      confidentialiteP2: "Ces informations ne sont ni vendues ni transmises à des tiers à des fins commerciales.",
-      confidentialiteP3: "Contenu à compléter avec la politique définitive de gestion des données personnelles avant mise en production.",
-      mentionsTitle: "Mentions légales",
-      denomination: "Dénomination",
-      formeJuridique: "Forme juridique",
-      formeJuridiqueValue: "Société à responsabilité limitée unipersonnelle (SARL U)",
-      capitalSocial: "Capital social",
-      siegeSocial: "Siège social",
-      rccm: "RCCM",
-      niu: "NIU",
-      gerant: "Gérant",
-      contact: "Contact",
-      site: "Site",
+      lastUpdated: "Dernière mise à jour : 13 septembre 2026",
+      mentions: {
+        title: "Mentions légales",
+        editorHeading: "Éditeur du site",
+        denomination: "Dénomination",
+        formeJuridique: "Forme juridique",
+        formeJuridiqueValue: "Société à responsabilité limitée unipersonnelle (SARL U) de droit camerounais",
+        capitalSocial: "Capital social",
+        siegeSocial: "Siège social",
+        rccm: "RCCM",
+        niu: "NIU",
+        gerant: "Gérant / Directeur de la publication",
+        activite: "Activité",
+        activiteValue:
+          "Étude, conception, fourniture, installation, mise en service et maintenance de solutions de film LED transparent et d'écran LED transparent pour surfaces vitrées (vitrines, façades).",
+        contact: "Contact",
+        site: "Site",
+        hostingHeading: "Hébergement",
+        hostingBody:
+          "Le site krisalysglobal.com est hébergé par Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis (netlify.com).",
+        ipHeading: "Propriété intellectuelle",
+        ipBody:
+          "L'ensemble des éléments présents sur ce site (textes, logo, identité visuelle, structure, code source) est la propriété de KRISALYS SARL U, sauf mention contraire, et est protégé par le droit camerounais de la propriété intellectuelle ainsi que par les conventions internationales applicables. Toute reproduction, représentation ou exploitation, totale ou partielle, sans autorisation écrite préalable de KRISALYS est interdite.",
+        liabilityHeading: "Responsabilité",
+        liabilityBody:
+          "Les simulations visuelles, rendus « avant/après » et recommandations générées par le configurateur de projet sont fournis à titre indicatif uniquement : ils ne constituent ni un devis ferme, ni une offre contractuelle de KRISALYS. Toute configuration proposée doit être confirmée par une étude technique menée par nos équipes. KRISALYS s'efforce d'assurer l'exactitude des informations publiées sur le site mais ne saurait être tenue responsable des erreurs, omissions, ou de l'indisponibilité temporaire du site. KRISALYS décline toute responsabilité quant au contenu des sites tiers accessibles depuis des liens hypertextes présents sur ce site (WhatsApp, notamment).",
+        lawHeading: "Droit applicable",
+        lawBody:
+          "Les présentes mentions légales sont régies par le droit camerounais. À défaut de résolution amiable, tout litige relatif à leur interprétation ou à leur exécution relève de la compétence exclusive des juridictions de Douala (Cameroun).",
+        contactHeading: "Contact",
+        contactBody: "Pour toute question relative au site ou à ces mentions légales, vous pouvez écrire à contact@krisalysglobal.com.",
+      },
+      terms: {
+        title: "Conditions d'utilisation",
+        intro:
+          "Les présentes conditions d'utilisation régissent l'accès et l'utilisation du site krisalysglobal.com, édité par KRISALYS SARL U. Elles ne constituent pas des conditions générales de vente : ce site ne permet pas l'achat, la commande ou le paiement en ligne d'un produit ou d'un service. Toute prestation de KRISALYS (étude, fourniture, installation, maintenance) fait l'objet d'un devis puis d'un contrat distinct, discuté et signé séparément avec le client, en dehors de ce site.",
+        sections: [
+          {
+            heading: "1. Objet du site",
+            body: [
+              "Ce site a pour objet de présenter les solutions de film LED transparent et d'écran LED transparent proposées par KRISALYS, d'expliquer la méthode de travail de l'entreprise, et de permettre aux visiteurs d'entrer en contact avec KRISALYS ou d'obtenir une première orientation indicative via le configurateur de projet.",
+            ],
+          },
+          {
+            heading: "2. Accès au site",
+            body: [
+              "L'accès au site est gratuit pour tout utilisateur disposant d'une connexion à internet. Les frais liés à l'accès au site (matériel informatique, connexion internet, etc.) sont à la charge exclusive de l'utilisateur. KRISALYS met tout en œuvre pour assurer l'accessibilité du site, sans garantie de continuité, notamment en cas de maintenance ou de panne.",
+            ],
+          },
+          {
+            heading: "3. Configurateur de projet et simulations",
+            body: [
+              "Le configurateur de projet et les simulations visuelles présentés sur le site ont une valeur strictement indicative. Ils s'appuient sur les informations déclarées par l'utilisateur et sur les données de catalogue disponibles au moment de la consultation, qui peuvent être incomplètes.",
+              "Les estimations de prix affichées sont des tarifs provisoires de développement, non contractuels : elles ne constituent pas une offre commerciale ferme et doivent, dans tous les cas, être confirmées par une étude technique menée par KRISALYS avant tout engagement.",
+            ],
+          },
+          {
+            heading: "4. Demandes de contact et formulaires",
+            body: [
+              "En soumettant le formulaire de contact ou le configurateur de projet, l'utilisateur adresse à KRISALYS une demande d'information ou de mise en relation ; il ne s'agit en aucun cas d'une commande ou d'un engagement d'achat. L'utilisateur s'engage à fournir des informations exactes et à jour. KRISALYS s'efforce de répondre dans un délai raisonnable, sans garantie de délai de réponse.",
+            ],
+          },
+          {
+            heading: "5. Propriété intellectuelle",
+            body: [
+              "Le contenu du site est protégé dans les conditions décrites dans les mentions légales. Toute reproduction non autorisée est interdite.",
+            ],
+          },
+          {
+            heading: "6. Liens externes",
+            body: [
+              "Le site peut contenir des liens vers des sites tiers, notamment WhatsApp. KRISALYS n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité à leur égard. La consultation de ces sites relève de la seule responsabilité de l'utilisateur.",
+            ],
+          },
+          {
+            heading: "7. Évolution des conditions",
+            body: [
+              "KRISALYS se réserve le droit de modifier les présentes conditions d'utilisation à tout moment, notamment pour tenir compte d'une évolution du site ou de la réglementation applicable. La version applicable est celle publiée sur cette page à la date de consultation.",
+            ],
+          },
+          {
+            heading: "8. Droit applicable et juridiction",
+            body: [
+              "Les présentes conditions sont régies par le droit camerounais. À défaut de résolution amiable, tout litige relève de la compétence exclusive des juridictions de Douala (Cameroun).",
+            ],
+          },
+          {
+            heading: "9. Contact",
+            body: ["Pour toute question relative aux présentes conditions, vous pouvez écrire à contact@krisalysglobal.com."],
+          },
+        ],
+      },
+      privacy: {
+        title: "Politique de confidentialité",
+        intro:
+          "KRISALYS SARL U attache une grande importance à la protection des données personnelles des visiteurs et prospects de krisalysglobal.com. Cette politique explique quelles données sont collectées, pour quelles finalités, avec qui elles peuvent être partagées, et quels sont vos droits.",
+        sections: [
+          {
+            heading: "1. Responsable du traitement",
+            body: [
+              "KRISALYS SARL U, dont le siège social est situé à Nyalla Pariso, Douala, Cameroun, est responsable du traitement des données personnelles collectées sur ce site. Contact : contact@krisalysglobal.com.",
+            ],
+          },
+          {
+            heading: "2. Données collectées",
+            body: [
+              "Via le formulaire de contact : nom, entreprise (facultatif), téléphone, email, ville, type de bâtiment et message.",
+              "Via le configurateur de projet : les mêmes informations de contact (nom, email, téléphone, entreprise facultative, ville), ainsi que les caractéristiques du projet que vous déclarez (type de bâtiment, usage prévu, contexte du projet, dimensions, distance de vision, luminosité ambiante, préférence de transparence, type de contenu envisagé, objectif, préférence technologique, contraintes particulières), utilisées pour produire une première orientation indicative.",
+              "Préférences de navigation : la langue choisie (français/anglais) et le thème d'affichage (clair, sombre ou système), mémorisés localement dans votre navigateur — voir la section « Cookies » ci-dessous.",
+              "Ce site n'utilise à ce jour aucun outil d'analyse d'audience (type Google Analytics) ni aucun cookie publicitaire ou de suivi tiers. Si un tel outil venait à être mis en place, cette politique serait mise à jour en conséquence.",
+            ],
+          },
+          {
+            heading: "3. Finalités du traitement",
+            body: [
+              "Vos données sont utilisées pour : répondre à votre demande de contact, préparer une étude technique ou une simulation, assurer le suivi commercial de votre dossier (le cas échéant via l'outil de gestion de la relation client HubSpot), et mémoriser vos préférences d'affichage sur le site.",
+            ],
+          },
+          {
+            heading: "4. Base légale et cadre juridique",
+            body: [
+              "Le traitement de vos données repose sur votre consentement, exprimé par la soumission volontaire d'un formulaire, ainsi que sur l'intérêt légitime de KRISALYS à répondre aux demandes qui lui sont adressées. Il est conduit dans le respect du droit camerounais applicable, notamment de la loi n° 2010/012 du 21 décembre 2010 relative à la cybersécurité et à la cybercriminalité au Cameroun.",
+            ],
+          },
+          {
+            heading: "5. Destinataires des données",
+            body: [
+              "Vos données sont accessibles à l'équipe KRISALYS et, dans la mesure nécessaire au traitement de votre demande, aux prestataires techniques suivants agissant pour le compte de KRISALYS : Resend (envoi des emails transactionnels liés au formulaire de contact), HubSpot (gestion de la relation client, lorsque cette intégration est activée côté KRISALYS) et Netlify (hébergement du site).",
+              "Ces prestataires sont susceptibles de traiter des données en dehors du Cameroun (notamment aux États-Unis ou dans l'Union européenne), dans le cadre de leurs infrastructures respectives. Vos données ne sont ni vendues, ni louées, ni transmises à des tiers à des fins commerciales.",
+            ],
+          },
+          {
+            heading: "6. Durée de conservation",
+            body: [
+              "Les données transmises via les formulaires sont conservées pendant la durée nécessaire au traitement de votre demande, puis pendant la durée de la relation commerciale qui pourrait en découler, dans la limite des délais de prescription légale applicables.",
+            ],
+          },
+          {
+            heading: "7. Cookies et technologies similaires",
+            body: [
+              "Ce site utilise deux témoins de préférence strictement fonctionnels, sans finalité publicitaire ni de mesure d'audience :",
+              "• krisalys-locale (cookie et stockage local) : mémorise la langue choisie (français ou anglais).",
+              "• krisalys-theme (stockage local) : mémorise le thème d'affichage choisi (clair, sombre ou système).",
+              "Ces témoins sont strictement nécessaires au fonctionnement attendu du site et ne servent à aucun suivi publicitaire ou statistique. Vous pouvez les supprimer à tout moment via les paramètres de votre navigateur : le site continuera de fonctionner normalement, avec un retour aux réglages par défaut (français, thème système).",
+            ],
+          },
+          {
+            heading: "8. Sécurité",
+            body: [
+              "KRISALYS met en œuvre des mesures techniques raisonnables — transmission chiffrée des données via HTTPS, hébergement par un prestataire professionnel — pour protéger les données transmises contre l'accès non autorisé, la perte ou l'altération.",
+            ],
+          },
+          {
+            heading: "9. Vos droits",
+            body: [
+              "Vous disposez d'un droit d'accès, de rectification et de suppression des données personnelles vous concernant. Vous pouvez exercer ces droits à tout moment en écrivant à contact@krisalysglobal.com.",
+            ],
+          },
+          {
+            heading: "10. Modification de la présente politique",
+            body: [
+              "Cette politique peut être mise à jour pour refléter une évolution du site, des services utilisés ou de la réglementation applicable. La version en vigueur est celle publiée sur cette page, avec sa date de dernière mise à jour indiquée en haut de page.",
+            ],
+          },
+          {
+            heading: "11. Contact",
+            body: ["Pour toute question relative à cette politique ou pour exercer vos droits, vous pouvez écrire à contact@krisalysglobal.com."],
+          },
+        ],
+      },
     },
   },
   form: {
@@ -374,9 +533,18 @@ const fr: Dictionary = {
       title: "Blog — Film LED transparent, écran LED transparent et intégration",
       description: "Articles sur le film LED transparent, l'écran LED transparent et l'intégration de projets LED sur surfaces vitrées au Cameroun.",
     },
-    conditions: { title: "Conditions d'utilisation" },
-    confidentialite: { title: "Politique de confidentialité" },
-    mentionsLegales: { title: "Mentions légales" },
+    conditions: {
+      title: "Conditions d'utilisation",
+      description: "Conditions d'utilisation du site KRISALYS : configurateur de projet, simulations indicatives, demandes de contact et droit applicable.",
+    },
+    confidentialite: {
+      title: "Politique de confidentialité",
+      description: "Politique de confidentialité KRISALYS : données collectées via le formulaire et le configurateur, cookies utilisés, finalités et droits des personnes.",
+    },
+    mentionsLegales: {
+      title: "Mentions légales",
+      description: "Mentions légales de KRISALYS SARL U : éditeur, hébergement, propriété intellectuelle et droit applicable au site krisalysglobal.com.",
+    },
   },
   founder: {
     eyebrow: "À propos",

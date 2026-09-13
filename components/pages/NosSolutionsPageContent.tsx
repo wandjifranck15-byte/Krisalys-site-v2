@@ -5,6 +5,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import DynamicIcon from "@/components/ui/DynamicIcon";
 import { ButtonLink } from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
+import FadeIn from "@/components/animations/FadeIn";
 import { getTechnologies } from "@/data/technologies";
 import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
@@ -30,18 +31,20 @@ export default function NosSolutionsPageContent() {
       {/* 2. Les deux technologies, présentation strictement symétrique */}
       <section className="bg-surface-soft py-16">
         <Container className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {technologies.map((tech) => (
-            <div key={tech.slug} className="flex flex-col rounded-2xl border border-subtle bg-surface p-8 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-widest text-krisalys-blue-deep">
-                {p.techLabel} — {tech.eyebrow.replace(/^Technologie |^Technology /, "")}
-              </p>
-              <DynamicIcon name={tech.icon} className="mt-4 h-9 w-9 text-krisalys-blue-deep" />
-              <h2 className="mt-4 text-xl font-bold text-ink">{tech.name}</h2>
-              <p className="mt-3 flex-1 text-sm text-ink-muted">{tech.shortDescription}</p>
-              <ButtonLink href={tech.slug === "film-led-transparent" ? "/film-led-transparent" : "/ecrans-led-transparents"} variant="secondary" className="mt-6 w-fit">
-                {p.cta}
-              </ButtonLink>
-            </div>
+          {technologies.map((tech, i) => (
+            <FadeIn key={tech.slug} delay={i * 0.1}>
+              <div className="flex h-full flex-col rounded-2xl border border-subtle bg-surface p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-krisalys-blue-deep/40 hover:shadow-glow">
+                <p className="text-xs font-semibold uppercase tracking-widest text-krisalys-blue-deep">
+                  {p.techLabel} — {tech.eyebrow.replace(/^Technologie |^Technology /, "")}
+                </p>
+                <DynamicIcon name={tech.icon} className="mt-4 h-9 w-9 text-krisalys-blue-deep" />
+                <h2 className="mt-4 text-xl font-bold text-ink">{tech.name}</h2>
+                <p className="mt-3 flex-1 text-sm text-ink-muted">{tech.shortDescription}</p>
+                <ButtonLink href={tech.slug === "film-led-transparent" ? "/film-led-transparent" : "/ecrans-led-transparents"} variant="secondary" className="mt-6 w-fit">
+                  {p.cta}
+                </ButtonLink>
+              </div>
+            </FadeIn>
           ))}
         </Container>
       </section>

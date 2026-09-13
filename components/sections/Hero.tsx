@@ -20,7 +20,7 @@ export default function Hero() {
           glow subtil, lumière diffuse" — jamais de néon agressif) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-1/3 h-96 w-96 rounded-full bg-krisalys-gold/10 blur-[100px]"
+        className="pointer-events-none absolute -right-24 top-1/3 h-96 w-96 animate-glow-pulse rounded-full bg-krisalys-gold/10 blur-[100px]"
       />
       <div
         aria-hidden

@@ -78,6 +78,11 @@ const config: Config = {
         // Animation dédiée au halo (distincte de logo-reveal) : conserve le flou (blur-md) pendant
         // toute la durée pour éviter qu'un keyframe sur `filter` n'écrase le blur statique.
         "logo-halo": "logoHalo 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        // Respiration lumineuse très subtile pour les halos de fond déjà en
+        // place (CTASection, Hero) — même esprit "lumière diffuse, jamais
+        // agressive" que logo-halo, en boucle lente pour un fond, pas un
+        // élément ponctuel.
+        "glow-pulse": "glowPulse 5s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -97,6 +102,10 @@ const config: Config = {
           "0%": { opacity: "0", filter: "blur(12px) brightness(0.4)" },
           "60%": { opacity: "0.8", filter: "blur(12px) brightness(1.15)" },
           "100%": { opacity: "0.6", filter: "blur(12px) brightness(1)" },
+        },
+        glowPulse: {
+          "0%, 100%": { opacity: "0.7" },
+          "50%": { opacity: "1" },
         },
       },
     },

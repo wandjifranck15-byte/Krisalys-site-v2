@@ -4,6 +4,7 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/sections/ProjectCard";
+import FadeIn from "@/components/animations/FadeIn";
 import { ButtonLink } from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
 import { getProjects, getExternalReferences } from "@/data/projects";
@@ -31,18 +32,22 @@ export default function RealisationsPageContent() {
     <>
       <section className="bg-canvas py-20">
         <Container className="max-w-3xl">
-          {p.eyebrow && (
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{p.eyebrow}</p>
-          )}
-          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{p.title}</h1>
-          <p className="mt-4 text-lg text-ink-muted">{p.description}</p>
-          <p className="mt-4 text-sm text-ink-muted">{p.distinctionNote}</p>
+          <FadeIn>
+            {p.eyebrow && (
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{p.eyebrow}</p>
+            )}
+            <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{p.title}</h1>
+            <p className="mt-4 text-lg text-ink-muted">{p.description}</p>
+            <p className="mt-4 text-sm text-ink-muted">{p.distinctionNote}</p>
+          </FadeIn>
         </Container>
 
         <Container className="mt-12">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+            {projects.map((project, i) => (
+              <FadeIn key={project.slug} delay={Math.min(i, 5) * 0.08}>
+                <ProjectCard project={project} />
+              </FadeIn>
             ))}
           </div>
         </Container>
@@ -78,14 +83,16 @@ export default function RealisationsPageContent() {
             <span>{p.intlDisclaimer}</span>
           </div>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {externalReferences.map((ref) => (
-              <div key={ref.title} className="rounded-2xl border border-subtle bg-surface p-6">
-                <h3 className="text-base font-semibold text-ink">{ref.title}</h3>
-                <p className="mt-2 text-sm text-ink-muted">{ref.description}</p>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-krisalys-blue-deep">
-                  {ref.sourceLabel}
-                </p>
-              </div>
+            {externalReferences.map((ref, i) => (
+              <FadeIn key={ref.title} delay={Math.min(i, 5) * 0.08}>
+                <div className="rounded-2xl border border-subtle bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-krisalys-blue-deep/40 hover:shadow-glow">
+                  <h3 className="text-base font-semibold text-ink">{ref.title}</h3>
+                  <p className="mt-2 text-sm text-ink-muted">{ref.description}</p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-krisalys-blue-deep">
+                    {ref.sourceLabel}
+                  </p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </Container>

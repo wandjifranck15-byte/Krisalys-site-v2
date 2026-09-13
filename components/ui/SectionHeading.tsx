@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import FadeIn from "@/components/animations/FadeIn";
 
 export default function SectionHeading({
   eyebrow,
@@ -20,30 +23,32 @@ export default function SectionHeading({
 }) {
   const Heading = as;
   return (
-    <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
-      {eyebrow && (
-        <p
+    <FadeIn className={cn("max-w-3xl", align === "center" && "mx-auto")}>
+      <div className={cn(align === "center" && "text-center")}>
+        {eyebrow && (
+          <p
+            className={cn(
+              "mb-3 text-sm font-semibold uppercase tracking-widest",
+              light ? "text-krisalys-blue" : "text-accent"
+            )}
+          >
+            {eyebrow}
+          </p>
+        )}
+        <Heading
           className={cn(
-            "mb-3 text-sm font-semibold uppercase tracking-widest",
-            light ? "text-krisalys-blue" : "text-accent"
+            "text-3xl font-bold tracking-tight sm:text-4xl",
+            light ? "text-white" : "text-ink"
           )}
         >
-          {eyebrow}
-        </p>
-      )}
-      <Heading
-        className={cn(
-          "text-3xl font-bold tracking-tight sm:text-4xl",
-          light ? "text-white" : "text-ink"
+          {title}
+        </Heading>
+        {description && (
+          <p className={cn("mt-4 text-lg", light ? "text-krisalys-gray-light" : "text-ink-muted")}>
+            {description}
+          </p>
         )}
-      >
-        {title}
-      </Heading>
-      {description && (
-        <p className={cn("mt-4 text-lg", light ? "text-krisalys-gray-light" : "text-ink-muted")}>
-          {description}
-        </p>
-      )}
-    </div>
+      </div>
+    </FadeIn>
   );
 }

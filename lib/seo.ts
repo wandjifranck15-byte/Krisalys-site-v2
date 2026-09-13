@@ -49,3 +49,45 @@ export function buildMetadata(
     },
   };
 }
+
+// BreadcrumbList — aide Google à comprendre la hiérarchie du site autour du
+// repositionnement validé (KRISALYS > technologie / secteur / preuve...),
+// jamais une donnée inventée : les libellés proviennent toujours de
+// dictionary.nav.labels, déjà utilisés dans la navigation visible.
+export function buildBreadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${siteConfig.url}${item.path}`,
+    })),
+  };
+}
+
+// Service — décrit une des deux technologies piliers comme un service
+// délivré par KRISALYS (étude, fourniture, installation), jamais comme un
+// produit à prix fixe (aucune offre/prix n'est affirmée ici — voir
+// lib/configurator pour la logique de prix indicatif, non dupliquée dans ce
+// schema). `name`/`description` proviennent toujours de data/technologies.ts.
+export function buildServiceJsonLd(options: { name: string; description: string; path: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: options.name,
+    serviceType: options.name,
+    description: options.description,
+    url: `${siteConfig.url}${options.path}`,
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.legalName,
+      url: siteConfig.url,
+    },
+    areaServed: {
+      "@type": "City",
+      name: siteConfig.address.city,
+    },
+  };
+}

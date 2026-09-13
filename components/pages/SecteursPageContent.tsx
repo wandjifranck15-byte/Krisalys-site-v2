@@ -7,6 +7,7 @@ import DynamicIcon from "@/components/ui/DynamicIcon";
 import { ButtonLink } from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
 import SectorCard from "@/components/sections/SectorCard";
+import FadeIn from "@/components/animations/FadeIn";
 import { getSectors } from "@/data/sectors";
 import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
@@ -27,17 +28,21 @@ export default function SecteursPageContent() {
     <>
       <section className="bg-canvas py-20">
         <Container className="max-w-3xl">
-          {p.eyebrow && (
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{p.eyebrow}</p>
-          )}
-          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{p.title}</h1>
-          <p className="mt-4 text-lg text-ink-muted">{p.description}</p>
+          <FadeIn>
+            {p.eyebrow && (
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{p.eyebrow}</p>
+            )}
+            <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{p.title}</h1>
+            <p className="mt-4 text-lg text-ink-muted">{p.description}</p>
+          </FadeIn>
         </Container>
 
         <Container className="mt-12">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sectors.map((sector) => (
-              <SectorCard key={sector.slug} sector={sector} viewLabel={dictionary.common.viewSectorLabel} />
+            {sectors.map((sector, i) => (
+              <FadeIn key={sector.slug} delay={Math.min(i, 5) * 0.08}>
+                <SectorCard sector={sector} viewLabel={dictionary.common.viewSectorLabel} />
+              </FadeIn>
             ))}
           </div>
         </Container>

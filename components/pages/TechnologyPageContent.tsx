@@ -7,6 +7,7 @@ import DynamicIcon from "@/components/ui/DynamicIcon";
 import { ButtonLink } from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
 import TechnologyMethodSummary from "@/components/pages/TechnologyMethodSummary";
+import FadeIn from "@/components/animations/FadeIn";
 import { getTechnologyBySlug } from "@/data/technologies";
 import { getSectorBySlug } from "@/data/sectors";
 import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
@@ -113,11 +114,13 @@ export default function TechnologyPageContent({ slug }: { slug: string }) {
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-ink-muted">{p.configurationNote}</p>
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {tech.variants.map((variant:{ title: string; description: string}) => (
-              <div key={variant.title} className="rounded-2xl border border-subtle bg-surface p-6 shadow-sm">
-                <h3 className="text-base font-semibold text-ink">{variant.title}</h3>
-                <p className="mt-2 text-sm text-ink-muted">{variant.description}</p>
-              </div>
+            {tech.variants.map((variant:{ title: string; description: string}, i: number) => (
+              <FadeIn key={variant.title} delay={Math.min(i, 5) * 0.08}>
+                <div className="rounded-2xl border border-subtle bg-surface p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-krisalys-blue-deep/40 hover:shadow-glow">
+                  <h3 className="text-base font-semibold text-ink">{variant.title}</h3>
+                  <p className="mt-2 text-sm text-ink-muted">{variant.description}</p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </Container>

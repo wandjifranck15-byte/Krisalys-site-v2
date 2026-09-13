@@ -26,6 +26,10 @@ export const siteConfig = {
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "237682909162",
   address: {
     locality: "Nyalla Pariso, Douala",
+    // Ville seule (déjà contenue dans `locality` ci-dessus), utilisée pour
+    // les schémas structurés SEO (areaServed) qui attendent un nom de ville
+    // simple plutôt qu'un quartier + ville — voir lib/seo.ts.
+    city: "Douala",
     country: "Cameroun",
   },
 };

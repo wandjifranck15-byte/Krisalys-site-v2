@@ -4,6 +4,7 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/sections/ProjectCard";
+import FadeIn from "@/components/animations/FadeIn";
 import ConfiguratorWizard from "@/components/configurator/ConfiguratorWizard";
 import CTASection from "@/components/sections/CTASection";
 import { getProjects } from "@/data/projects";
@@ -20,8 +21,10 @@ export default function SimulationsPageContent() {
         <Container>
           <SectionHeading eyebrow={p.eyebrow} title={p.title} description={p.description} as="h1" />
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+            {projects.map((project, i) => (
+              <FadeIn key={project.slug} delay={Math.min(i, 5) * 0.08}>
+                <ProjectCard project={project} />
+              </FadeIn>
             ))}
           </div>
           {/* Phase 11 : maillage léger vers les deux pages piliers — permet

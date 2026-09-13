@@ -73,10 +73,17 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              // "LocalBusiness" en complément d'"Organization" (SEO local — voir
+              // audit Phase SEO) : KRISALYS est une entreprise à ancrage
+              // physique (Douala) fournissant un service sur site, pas
+              // seulement une marque en ligne. `areaServed` reflète le marché
+              // réellement ciblé (Douala/Cameroun — voir siteConfig), jamais
+              // une zone de couverture inventée.
+              "@type": ["Organization", "LocalBusiness"],
               name: siteConfig.legalName,
               url: siteConfig.url,
               logo: `${siteConfig.url}/images/brand_logo_full.png`,
+              image: `${siteConfig.url}/images/brand_logo_full.png`,
               email: siteConfig.email,
               telephone: siteConfig.phone,
               address: {
@@ -84,11 +91,15 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                 addressLocality: siteConfig.address.locality,
                 addressCountry: siteConfig.address.country,
               },
+              areaServed: {
+                "@type": "City",
+                name: siteConfig.address.city,
+              },
               description: dictionary.seo.home.description,
             }),
           }}
         />
-        <Providers>
+        <Providers initialLocale={locale}>
           <Navbar />
           <main className="min-h-screen pt-20">{children}</main>
           <Footer />

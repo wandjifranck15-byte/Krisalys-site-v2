@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import FaqPageContent from "@/components/pages/FaqPageContent";
 import { getServerLocale } from "@/lib/i18n/server";
 import { getDictionary } from "@/lib/i18n/config";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, buildBreadcrumbJsonLd } from "@/lib/seo";
 import { getFaqItems } from "@/data/faq";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function FAQPage() {
   const locale = await getServerLocale();
+  const dictionary = getDictionary(locale);
   // Schema FAQPage généré depuis la même source que le contenu affiché
   // (data/faq.ts) — aucune donnée dupliquée, aucune question inventée.
   const faqItems = getFaqItems(locale);
@@ -25,10 +26,15 @@ export default async function FAQPage() {
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
   };
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: dictionary.nav.labels["/"], path: "/" },
+    { name: dictionary.nav.labels["/faq"], path: "/faq" },
+  ]);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <FaqPageContent />
     </>
   );

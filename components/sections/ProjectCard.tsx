@@ -10,9 +10,9 @@ export default function ProjectCard({ project }: { project: Project }) {
   const technology = project.technologySlug ? getTechnologyBySlug(project.technologySlug, locale) : null;
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-subtle bg-surface shadow-sm">
-      <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-krisalys-blue-deep/15 to-krisalys-gray-light/60">
-        <span className="rounded-full bg-krisalys-gold/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-krisalys-orange-dark">
+    <div className="group overflow-hidden rounded-2xl border border-subtle bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-krisalys-blue-deep/40 hover:shadow-glow">
+      <div className="flex aspect-video items-center justify-center overflow-hidden bg-gradient-to-br from-krisalys-blue-deep/15 to-krisalys-gray-light/60">
+        <span className="rounded-full bg-krisalys-gold/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-krisalys-orange-dark transition-transform duration-300 group-hover:scale-105">
           {project.isSimulation ? dictionary.common.simulationLabel : dictionary.common.realizationLabel}
         </span>
       </div>
