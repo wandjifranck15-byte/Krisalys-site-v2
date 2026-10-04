@@ -7,8 +7,9 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { siteConfig } from "@/lib/utils";
 import { useDictionary } from "@/lib/i18n/LocaleContext";
 
-// "Franck Wandji" est un nom propre, volontairement identique en FR/EN.
-const FOUNDER_NAME = "Franck Wandji";
+// Nom propre, volontairement identique en FR/EN (voir aussi
+// MentionsLegalesPageContent.tsx, même personne, même orthographe).
+const FOUNDER_NAME = "Wandji Nkouamo Franck Hoffman";
 
 export default function FounderSection() {
   const dictionary = useDictionary();
