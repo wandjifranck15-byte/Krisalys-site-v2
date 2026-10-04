@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 240">
+  <!-- Silhouette du K KRISALYS (barre + chevron échancré), un seul contour
+       fermé, sans intersection — conçue pour l'extrusion verre du moteur
+       premium-3d-glass. Aucun SVG vectoriel du logo n'existe dans le projet
+       (uniquement des rasters : public/images/brand_mark_k.png) ; cette
+       silhouette est redessinée à la main à partir de ce raster pour
+       préserver la lecture immédiate du K (barre verticale + chevron
+       échancré), en la simplifiant au strict nécessaire pour que le moteur
+       l'accepte (silhouette simple, lisible d'un coup d'oeil en verre). -->
+  <path d="M20,20 L80,20 L200,20 L120,120 L200,220 L80,220 L20,220 Z" />
+</svg>
