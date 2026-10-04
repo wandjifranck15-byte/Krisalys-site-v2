@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
 import HowItWorks from "@/components/sections/HowItWorks";
 import { ButtonLink } from "@/components/ui/Button";
+import FadeIn from "@/components/animations/FadeIn";
 import { getMethodSteps } from "@/data/method-steps";
 import { useDictionary, useLocale } from "@/lib/i18n/LocaleContext";
 
@@ -20,12 +21,26 @@ export default function MethodePageContent() {
   return (
     <>
       <section className="bg-canvas py-20">
-        <Container className="max-w-3xl">
-          {m.eyebrow && (
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{m.eyebrow}</p>
-          )}
-          <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{m.title}</h1>
-          <p className="mt-4 text-lg text-ink-muted">{m.description}</p>
+        <Container className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <FadeIn>
+            {m.eyebrow && (
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{m.eyebrow}</p>
+            )}
+            <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{m.title}</h1>
+            <p className="mt-4 text-lg text-ink-muted">{m.description}</p>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-subtle shadow-glow">
+              <Image
+                src="/images/visuals/vitrage-installation-equipe.jpg"
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </FadeIn>
         </Container>
       </section>
 

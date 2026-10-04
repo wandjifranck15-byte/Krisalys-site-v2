@@ -1,13 +1,16 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
 import { useDictionary } from "@/lib/i18n/LocaleContext";
 
-// Comparateur avant/après. En attendant les vrais visuels de projets,
-// les zones "avant" et "après" sont représentées par des blocs de
-// couleur explicitement légendés — à remplacer par de vraies photos
-// et simulations dans /public/images (voir README > Médias).
+// Comparateur avant/après — deux visuels réels et distincts (une façade
+// vitrée classique / une façade équipée d'un écran LED transparent),
+// illustrant le potentiel de transformation sans prétendre qu'il s'agit
+// du même bâtiment ni d'une réalisation KRISALYS précise (voir
+// dictionary.pages.home.projectionDescription, déjà formulé au
+// conditionnel — "imaginez", "comparez" — jamais comme un fait).
 export default function BeforeAfterSlider({
   beforeLabel,
   afterLabel,
@@ -37,18 +40,32 @@ export default function BeforeAfterSlider({
       onTouchMove={(e) => handleMove(e.touches[0].clientX)}
     >
       {/* Après (fond) */}
-      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-krisalys-blue-deep/25 to-krisalys-blue/15">
-        <span className="text-sm font-semibold uppercase tracking-widest text-ink/60">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/visuals/ecran-led-facade-architecture.jpg"
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 100vw, 800px"
+          className="object-cover"
+          priority={false}
+        />
+        <span className="absolute bottom-4 right-4 rounded-full bg-krisalys-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white">
           {resolvedAfterLabel}
         </span>
       </div>
 
-      {/* Avant (recouvrement) */}
-      <div
-        className="absolute inset-y-0 left-0 flex items-center justify-center overflow-hidden bg-krisalys-gray-light"
-        style={{ width: `${position}%` }}
-      >
-        <span className="text-sm font-semibold uppercase tracking-widest text-ink-muted">
+      {/* Avant (recouvrement, même cadrage que l'image "après" via clip-path
+          plutôt qu'un conteneur rétréci — évite tout décalage/redimensionnement
+          de l'image pendant le glissement) */}
+      <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
+        <Image
+          src="/images/visuals/facade-vitree-avant-led.jpg"
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 100vw, 800px"
+          className="object-cover"
+        />
+        <span className="absolute bottom-4 left-4 rounded-full bg-krisalys-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white">
           {resolvedBeforeLabel}
         </span>
       </div>

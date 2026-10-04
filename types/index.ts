@@ -88,7 +88,7 @@ export interface Dictionary {
     ecranHeroSubtitle: string;
   };
   pages: {
-    home: { methodEyebrow: string; methodTitle: string; faqEyebrow: string; faqTitle: string; proofsEyebrow: string; proofsTitle: string; proofsDescription: string; whyEyebrow: string; whyTitle: string; whyItems: { title: string; description: string }[]; solutionsEyebrow: string; solutionsTitle: string; solutionsDescription: string; projectionEyebrow: string; projectionTitle: string; projectionDescription: string };
+    home: { methodEyebrow: string; methodTitle: string; faqEyebrow: string; faqTitle: string; proofsEyebrow: string; proofsTitle: string; proofsDescription: string; whyEyebrow: string; whyTitle: string; whyItems: { title: string; description: string }[]; solutionsEyebrow: string; solutionsTitle: string; solutionsDescription: string; projectionEyebrow: string; projectionTitle: string; projectionDescription: string; applicationsEyebrow: string; applicationsTitle: string; applicationsDescription: string; applicationsCard1Title: string; applicationsCard1Body: string; applicationsCard2Title: string; applicationsCard2Body: string; applicationsCta: string };
     faq: { eyebrow: string; title: string; ctaTitle: string };
     methode: {
       eyebrow: string;
@@ -406,6 +406,15 @@ export interface Technology {
   variants: { title: string; description: string }[];
   icon: string; // nom de l'icône Lucide
   ctaLabel: string;
+  // Visuels réels (public/images/visuals/) — jamais une image générique sans
+  // rapport avec la technologie décrite. Dimensions réelles du fichier
+  // (requises par next/image), alt descriptif et bilingue.
+  heroImage: { src: string; width: number; height: number; alt: string };
+  // Schéma de principe uniquement (jamais une fiche technique produit avec
+  // des valeurs chiffrées) — voir TechnologyPageContent pour la mention
+  // explicite "schéma de principe" affichée à côté.
+  schemaImage?: { src: string; width: number; height: number; alt: string; caption: string };
+  galleryImages?: { src: string; width: number; height: number; alt: string }[];
 }
 
 export interface Sector {

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import DynamicIcon from "@/components/ui/DynamicIcon";
@@ -27,7 +28,7 @@ export default function SecteursPageContent() {
   return (
     <>
       <section className="bg-canvas py-20">
-        <Container className="max-w-3xl">
+        <Container className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <FadeIn>
             {p.eyebrow && (
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">{p.eyebrow}</p>
@@ -35,9 +36,20 @@ export default function SecteursPageContent() {
             <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">{p.title}</h1>
             <p className="mt-4 text-lg text-ink-muted">{p.description}</p>
           </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-subtle shadow-glow">
+              <Image
+                src="/images/visuals/vitrage-installation-equipe.jpg"
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
         </Container>
 
-        <Container className="mt-12">
+        <Container className="mt-16">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sectors.map((sector, i) => (
               <FadeIn key={sector.slug} delay={Math.min(i, 5) * 0.08}>

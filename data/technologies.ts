@@ -52,6 +52,39 @@ const technologiesFr: Technology[] = [
     ],
     icon: "ScanLine",
     ctaLabel: "Étudier mon projet de film LED transparent",
+    heroImage: {
+      src: "/images/visuals/film-led-technicien-application.jpg",
+      width: 718,
+      height: 453,
+      alt: "Technicien KRISALYS appliquant un film LED transparent sur une surface vitrée",
+    },
+    schemaImage: {
+      src: "/images/visuals/film-led-schema-principe.jpg",
+      width: 1024,
+      height: 1024,
+      alt: "Schéma de principe de la structure en couches d'un film LED transparent",
+      caption: "Schéma de principe — structure générale d'un film LED transparent (illustration pédagogique, pas une fiche produit).",
+    },
+    galleryImages: [
+      {
+        src: "/images/visuals/film-led-macro-grille.jpg",
+        width: 550,
+        height: 550,
+        alt: "Gros plan sur la grille de micro-LED d'un film transparent, vue au travers du vitrage",
+      },
+      {
+        src: "/images/visuals/film-led-macro-rose.jpg",
+        width: 1000,
+        height: 1000,
+        alt: "Film LED transparent souple manipulé à la main, éclairé en rose et bleu",
+      },
+      {
+        src: "/images/visuals/film-led-produit-rouleau.jpg",
+        width: 800,
+        height: 800,
+        alt: "Rouleau de film LED transparent présenté à plat, connecteur visible sur la tranche",
+      },
+    ],
   },
   {
     slug: "ecran-led-transparent",
@@ -95,6 +128,26 @@ const technologiesFr: Technology[] = [
     ],
     icon: "Layers",
     ctaLabel: "Étudier mon projet d'écran LED transparent",
+    heroImage: {
+      src: "/images/visuals/ecran-led-facade-architecture.jpg",
+      width: 686,
+      height: 490,
+      alt: "Façade vitrée architecturale équipée d'un écran LED transparent, vue de nuit",
+    },
+    galleryImages: [
+      {
+        src: "/images/visuals/ecran-led-vitrine-mall.jpg",
+        width: 1536,
+        height: 1024,
+        alt: "Vitrine commerciale en centre commercial avec écran LED transparent affichant une nouvelle collection",
+      },
+      {
+        src: "/images/visuals/ecran-led-facade-nuit-abstrait.jpg",
+        width: 745,
+        height: 745,
+        alt: "Façade vitrée équipée d'un écran LED transparent diffusant une composition lumineuse abstraite, vue de nuit",
+      },
+    ],
   },
 ];
 
@@ -141,6 +194,39 @@ const technologiesEn: Technology[] = [
     ],
     icon: "ScanLine",
     ctaLabel: "Study my transparent LED film project",
+    heroImage: {
+      src: "/images/visuals/film-led-technicien-application.jpg",
+      width: 718,
+      height: 453,
+      alt: "KRISALYS technician applying a transparent LED film onto a glazed surface",
+    },
+    schemaImage: {
+      src: "/images/visuals/film-led-schema-principe.jpg",
+      width: 1024,
+      height: 1024,
+      alt: "Principle diagram of the layered structure of a transparent LED film",
+      caption: "Principle diagram — general structure of a transparent LED film (educational illustration, not a product spec sheet).",
+    },
+    galleryImages: [
+      {
+        src: "/images/visuals/film-led-macro-grille.jpg",
+        width: 550,
+        height: 550,
+        alt: "Close-up of the micro-LED grid of a transparent film, seen through the glazing",
+      },
+      {
+        src: "/images/visuals/film-led-macro-rose.jpg",
+        width: 1000,
+        height: 1000,
+        alt: "Flexible transparent LED film held by hand, lit in pink and blue",
+      },
+      {
+        src: "/images/visuals/film-led-produit-rouleau.jpg",
+        width: 800,
+        height: 800,
+        alt: "Roll of transparent LED film laid flat, connector visible on the edge",
+      },
+    ],
   },
   {
     slug: "ecran-led-transparent",
@@ -184,6 +270,26 @@ const technologiesEn: Technology[] = [
     ],
     icon: "Layers",
     ctaLabel: "Study my transparent LED screen project",
+    heroImage: {
+      src: "/images/visuals/ecran-led-facade-architecture.jpg",
+      width: 686,
+      height: 490,
+      alt: "Architectural glazed facade fitted with a transparent LED screen, night view",
+    },
+    galleryImages: [
+      {
+        src: "/images/visuals/ecran-led-vitrine-mall.jpg",
+        width: 1536,
+        height: 1024,
+        alt: "Shopping mall storefront with a transparent LED screen displaying a new collection",
+      },
+      {
+        src: "/images/visuals/ecran-led-facade-nuit-abstrait.jpg",
+        width: 745,
+        height: 745,
+        alt: "Glazed facade fitted with a transparent LED screen displaying an abstract light composition, night view",
+      },
+    ],
   },
 ];
 

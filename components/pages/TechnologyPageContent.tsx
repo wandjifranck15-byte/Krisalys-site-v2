@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import DynamicIcon from "@/components/ui/DynamicIcon";
@@ -29,25 +30,98 @@ export default function TechnologyPageContent({ slug }: { slug: string }) {
 
   return (
     <>
-      {/* A — Hero, deux CTA */}
-      <section className="bg-canvas py-20">
-        <Container>
-          <DynamicIcon name={tech.icon} className="h-10 w-10 text-krisalys-blue-deep" />
-          <SectionHeading eyebrow={tech.eyebrow} title={tech.name} description={heroSubtitle} as="h1" />
-          <div className="mt-6 flex flex-wrap gap-4">
-            <ButtonLink href="/contact">{tech.ctaLabel}</ButtonLink>
-            <ButtonLink href="/configurateur" variant="secondary">{p.ctaConfigure}</ButtonLink>
+      {/* A — Hero, texte + visuel réel, deux CTA */}
+      <section className="overflow-hidden bg-canvas py-20">
+        <Container className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <DynamicIcon name={tech.icon} className="h-10 w-10 text-krisalys-blue-deep" />
+            <SectionHeading eyebrow={tech.eyebrow} title={tech.name} description={heroSubtitle} as="h1" />
+            <div className="mt-6 flex flex-wrap gap-4">
+              <ButtonLink href="/contact">{tech.ctaLabel}</ButtonLink>
+              <ButtonLink href="/configurateur" variant="secondary">{p.ctaConfigure}</ButtonLink>
+            </div>
           </div>
+          <FadeIn delay={0.1} className="relative">
+            <div className="relative overflow-hidden rounded-2xl border border-subtle shadow-glow">
+              <Image
+                src={tech.heroImage.src}
+                width={tech.heroImage.width}
+                height={tech.heroImage.height}
+                alt={tech.heroImage.alt}
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="h-full w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-krisalys-black/30 via-transparent to-transparent" />
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
-      {/* B — Le principe */}
+      {/* B — Le principe + Comment ça fonctionne (étapes réelles de
+          data/technologies.ts, déjà validées mais jamais affichées jusqu'ici)
+          + visuels réels, dans la même bande pour ne pas casser l'alternance
+          de fond des sections suivantes. Jamais de valeur chiffrée affirmée
+          sur les images — un schéma de principe reste explicitement légendé
+          comme tel (voir schemaImage). */}
       <section className="bg-surface-soft py-16">
         <Container className="max-w-3xl">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-krisalys-blue-deep">
             {p.sectionPrinciple}
           </h2>
           <p className="mt-4 text-ink-muted">{tech.description}</p>
+        </Container>
+        <Container className="mt-12">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-krisalys-blue-deep">
+            {p.sectionHowItWorks}
+          </h2>
+          <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+            <ol className="space-y-6">
+              {tech.howItWorks.map((step: string, i: number) => (
+                <FadeIn key={step} delay={i * 0.08}>
+                  <li className="flex gap-4">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-brand text-sm font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <p className="text-sm text-ink-muted">{step}</p>
+                  </li>
+                </FadeIn>
+              ))}
+            </ol>
+            <div className="grid grid-cols-2 gap-4">
+              {tech.schemaImage && (
+                <FadeIn className="col-span-2">
+                  <figure className="overflow-hidden rounded-2xl border border-subtle bg-surface">
+                    <Image
+                      src={tech.schemaImage.src}
+                      width={tech.schemaImage.width}
+                      height={tech.schemaImage.height}
+                      alt={tech.schemaImage.alt}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="w-full"
+                    />
+                    <figcaption className="border-t border-subtle px-4 py-3 text-xs text-ink-muted">
+                      {tech.schemaImage.caption}
+                    </figcaption>
+                  </figure>
+                </FadeIn>
+              )}
+              {tech.galleryImages?.map((img, i) => (
+                <FadeIn key={img.src} delay={0.1 + i * 0.08} className={tech.schemaImage ? undefined : "col-span-2 sm:col-span-1"}>
+                  <div className="overflow-hidden rounded-2xl border border-subtle transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
+                    <Image
+                      src={img.src}
+                      width={img.width}
+                      height={img.height}
+                      alt={img.alt}
+                      sizes="(max-width: 1024px) 50vw, 25vw"
+                      className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
         </Container>
       </section>
 
